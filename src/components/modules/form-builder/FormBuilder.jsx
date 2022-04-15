@@ -5,6 +5,8 @@ import { FormBuilderContainer } from "./FormBuilder.styles";
 import FormStateContext from "../../../context/formState";
 import get from "lodash/get";
 import set from "lodash/set";
+import unset from "lodash/unset";
+import compact from "lodash/compact";
 import cloneDeep from "lodash/cloneDeep";
 import addUUIDToTemplate from "../../../utils/addUUIDToTemplate";
 
@@ -14,6 +16,22 @@ const FormBuilder = ({ form, template }) => {
   const methods = useForm();
 
   const onSubmit = (data) => console.log("form: ", data);
+
+  const handleUpdateControl = (pathId, value) => {
+    const newItems = cloneDeep(items);
+
+    //* convert pathId to valid path for Objects
+    const controlObjectPathId = pathId.replace(/\d+/g, "items.$&");
+
+    //* get the control object
+    const currControlObject = get(newItems, controlObjectPathId);
+
+    //* update items with new value
+    set(newItems, controlObjectPathId, { ...currControlObject, value });
+
+    //* set the new form state
+    setItems(newItems);
+  };
 
   const handleAddListSectionToList = (pathId) => {
     //* clone the current form
@@ -49,8 +67,38 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
+  const handleDeleteListSectionFromList = (pathId) => {
+    //* clone the current form
+    const currForm = cloneDeep(items);
+
+    //* convert pathIds to valid path for Objects
+    const controlObjectPathId = pathId.replace(/\d+/g, "items.$&");
+    const controlParentObjectPathId = controlObjectPathId.slice(0, -2);
+
+    //* unset object with path from form
+    unset(currForm, controlObjectPathId);
+
+    //* get compact object of form
+    const enhancedCurrForm = set(
+      currForm,
+      controlParentObjectPathId,
+      compact(get(currForm, controlParentObjectPathId))
+    );
+
+    console.log("enhancedCurrForm: ", enhancedCurrForm);
+
+    //* set the new form state
+    setItems(enhancedCurrForm);
+  };
+
   return (
-    <FormStateContext.Provider value={{ handleAddListSectionToList }}>
+    <FormStateContext.Provider
+      value={{
+        handleUpdateControl,
+        handleAddListSectionToList,
+        handleDeleteListSectionFromList,
+      }}
+    >
       <FormProvider {...methods}>
         <FormBuilderContainer>
           <form

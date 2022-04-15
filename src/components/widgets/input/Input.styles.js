@@ -3,11 +3,16 @@ import styled from "styled-components";
 export const InputContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 1px solid black;
-  padding: 1rem;
+  margin-left: 2rem;
+  position: relative;
 
-  .label {
-    width: 10rem;
-    border: 1px solid red;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -33px;
+    width: 30px;
+    height: 1px;
+    background-color: black;
   }
 `;

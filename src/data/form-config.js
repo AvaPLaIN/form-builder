@@ -33,7 +33,7 @@ const formConfig = {
       items: [
         {
           street: {
-            uuid: "9665c4c6-e34b-46b2-bc8c-3c2e296ad25f",
+            uuid: "9665c4c6-e34b-46b3-bc8c-3c2e296af25f",
             id: "street",
             label: "Street",
             control: "input",
@@ -155,26 +155,6 @@ const formConfig = {
                 street: {
                   id: "street",
                   label: "Street",
-                  control: "input",
-                  type: "text",
-                  rules: {
-                    required: {
-                      value: true,
-                      message: "Username is required",
-                    },
-                    minLength: {
-                      value: 5,
-                      message: "Username must be at least 5 characters",
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: "Username must be at most 20 characters",
-                    },
-                  },
-                },
-                username: {
-                  id: "username",
-                  label: "Username",
                   control: "input",
                   type: "text",
                   rules: {
