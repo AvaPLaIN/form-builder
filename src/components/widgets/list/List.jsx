@@ -32,7 +32,17 @@ const List = ({ items, ...list }) => {
           //* extend pathId with the index of the section
           const pathId = `${list.pathId || id}.${index}`;
 
-          return <ListSection key={pathId} items={section} pathId={pathId} />;
+          return (
+            <ListSection
+              key={pathId}
+              items={section}
+              pathId={pathId}
+              pathInfo={{
+                pathId: list.pathId,
+                index: index,
+              }}
+            />
+          );
         })}
       </div>
     </ListContainer>

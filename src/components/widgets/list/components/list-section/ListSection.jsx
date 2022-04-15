@@ -3,17 +3,23 @@ import FormStateContext from "../../../../../context/formState";
 import { ListSectionContainer } from "./ListSection.styles";
 import Controller from "../../../controller";
 
-const ListSection = ({ items, pathId: id }) => {
-  const { handleDeleteListSectionFromList } = useContext(FormStateContext);
+const ListSection = ({ items, pathId: id, pathInfo }) => {
+  const { handleDeleteListSectionFromList, handleMoveListSectionDown } =
+    useContext(FormStateContext);
 
   return (
     <ListSectionContainer className="list-section-container">
       <div className="controls">
         <button>Up</button>
-        <button>Down</button>
         <button
           type="button"
-          onClick={() => handleDeleteListSectionFromList(id)}
+          onClick={() => handleMoveListSectionDown(id, pathInfo.index)}
+        >
+          Down
+        </button>
+        <button
+          type="button"
+          onClick={() => handleDeleteListSectionFromList(id, pathInfo.pathId)}
         >
           Delete
         </button>

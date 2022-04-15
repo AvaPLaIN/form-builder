@@ -10,6 +10,8 @@ import compact from "lodash/compact";
 import cloneDeep from "lodash/cloneDeep";
 import addUUIDToTemplate from "../../../utils/addUUIDToTemplate";
 
+//TODO - check if useCallback is needed
+
 const FormBuilder = ({ form, template }) => {
   const [items, setItems] = useState(form);
 
@@ -67,13 +69,17 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
-  const handleDeleteListSectionFromList = (pathId) => {
+  //TODO - adjust with pathIdInfo
+  const handleDeleteListSectionFromList = (pathId, pathIdInfo) => {
     //* clone the current form
     const currForm = cloneDeep(items);
 
     //* convert pathIds to valid path for Objects
     const controlObjectPathId = pathId.replace(/\d+/g, "items.$&");
-    const controlParentObjectPathId = controlObjectPathId.slice(0, -2);
+    const controlObjectPathIdInfo = `${pathIdInfo.replace(
+      /\d+/g,
+      "items.$&"
+    )}.items`;
 
     //* unset object with path from form
     unset(currForm, controlObjectPathId);
@@ -81,14 +87,27 @@ const FormBuilder = ({ form, template }) => {
     //* get compact object of form
     const enhancedCurrForm = set(
       currForm,
-      controlParentObjectPathId,
-      compact(get(currForm, controlParentObjectPathId))
+      controlObjectPathIdInfo,
+      compact(get(currForm, controlObjectPathIdInfo))
     );
-
-    console.log("enhancedCurrForm: ", enhancedCurrForm);
 
     //* set the new form state
     setItems(enhancedCurrForm);
+  };
+
+  //TODO - swap the order of two list sections
+  const handleMoveListSectionDown = (pathId, index) => {
+    console.log(pathId, index);
+
+    //TODO check if index is last element -> return
+
+    //TODO get current list section from form
+
+    //TODO get element at index - 1 from form
+
+    //TODO swap the elements
+
+    //TODO set the new form state
   };
 
   return (
@@ -97,6 +116,7 @@ const FormBuilder = ({ form, template }) => {
         handleUpdateControl,
         handleAddListSectionToList,
         handleDeleteListSectionFromList,
+        handleMoveListSectionDown,
       }}
     >
       <FormProvider {...methods}>

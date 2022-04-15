@@ -31,10 +31,9 @@ const Input = ({ ...item }) => {
         type={type}
         {...register(controlpathId, { ...rules })}
         onChange={(event) => handleUpdateControl(pathId, event.target.value)}
-        value={value || defaultValue}
+        value={value || defaultValue || ""}
         id={controlpathId}
       />
-      {item.uuid}
       {errorMessage && <div className="error input-error">{errorMessage}</div>}
     </InputContainer>
   );
