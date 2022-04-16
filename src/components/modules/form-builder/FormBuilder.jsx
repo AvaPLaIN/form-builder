@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import Controller from "../../widgets/controller";
-import { FormBuilderContainer } from "./FormBuilder.styles";
+import { FormBuilderContainer, StateContainer } from "./FormBuilder.styles";
 import FormStateContext from "../../../context/formState";
 import get from "lodash/get";
 import set from "lodash/set";
@@ -175,7 +175,16 @@ const FormBuilder = ({ form, template }) => {
             <button type="submit">Submit</button>
           </form>
         </FormBuilderContainer>
-        <pre>{JSON.stringify(data, undefined, 2)}</pre>
+        <StateContainer>
+          <div className="config">
+            <h3>Form Config</h3>
+            <pre>{JSON.stringify(form, undefined, 2)}</pre>
+          </div>
+          <div className="state">
+            <h3>Form State</h3>
+            <pre>{JSON.stringify(data, undefined, 2)}</pre>
+          </div>
+        </StateContainer>
       </FormProvider>
     </FormStateContext.Provider>
   );
