@@ -7,4 +7,5 @@ export const FormBuilderContainer = styled.div`
 
 export const StateContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;

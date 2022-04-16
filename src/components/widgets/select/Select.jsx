@@ -2,10 +2,9 @@ import { useEffect, useContext, memo } from "react";
 import { useFormContext } from "react-hook-form";
 import FormStateContext from "../../../context/formState";
 import get from "lodash/get";
-import { InputContainer } from "./Input.styles";
 
-const Input = ({ ...item }) => {
-  const { rules, value, defaultValue, pathId, id, type } = item;
+const Select = ({ ...item }) => {
+  const { rules, value, defaultValue, pathId, id, type, options } = item;
   const { handleUpdateControl } = useContext(FormStateContext);
   //* get the form context
   const {
@@ -22,23 +21,28 @@ const Input = ({ ...item }) => {
   }, [controlpathId, unregister]);
 
   return (
-    <InputContainer className="control-container input-container">
-      <label className="label input-label" htmlFor={controlpathId}>
+    <div className="control-container select-container">
+      <label className="label select-label" htmlFor={controlpathId}>
         {item.label}
       </label>
-      <input
-        className="control input"
+      <select
+        className="control select"
         type={type}
         {...register(controlpathId, { ...rules })}
         onChange={(event) =>
           handleUpdateControl(controlpathId, event.target.value)
         }
-        value={value || defaultValue || ""}
         id={controlpathId}
-      />
-      {errorMessage && <div className="error input-error">{errorMessage}</div>}
-    </InputContainer>
+      >
+        {options?.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      {errorMessage && <div className="error select-error">{errorMessage}</div>}
+    </div>
   );
 };
 
-export default memo(Input);
+export default memo(Select);

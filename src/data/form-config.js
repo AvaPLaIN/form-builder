@@ -22,6 +22,28 @@ const formConfig = {
         },
       },
     },
+    gender: {
+      uuid: "374baaf3-db1b-3d5t-u787-ed93e9306b67",
+      id: "gender",
+      label: "Gender",
+      control: "select",
+      options: [
+        {
+          value: "male",
+          label: "Male",
+        },
+        {
+          value: "female",
+          label: "Female",
+        },
+      ],
+      rules: {
+        required: {
+          value: true,
+          message: "Gender is required",
+        },
+      },
+    },
     address: {
       uuid: "f8f8f8f8-f8f8-f8f8-f8f8-f8f8f8f8f8f8",
       id: "address",
