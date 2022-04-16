@@ -14,10 +14,11 @@ import addUUIDToTemplate from "../../../utils/addUUIDToTemplate";
 
 const FormBuilder = ({ form, template }) => {
   const [items, setItems] = useState(form);
+  const [data, setData] = useState({});
 
   const methods = useForm();
 
-  const onSubmit = (data) => console.log("form: ", data);
+  const onSubmit = (data) => setData(data);
 
   const handleUpdateControl = (pathId, value) => {
     const newItems = cloneDeep(items);
@@ -174,6 +175,7 @@ const FormBuilder = ({ form, template }) => {
             <button type="submit">Submit</button>
           </form>
         </FormBuilderContainer>
+        <pre>{JSON.stringify(data, undefined, 2)}</pre>
       </FormProvider>
     </FormStateContext.Provider>
   );
