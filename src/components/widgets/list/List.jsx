@@ -4,9 +4,11 @@ import ListSection from "./components/list-section";
 import { ListContainer } from "./List.styles";
 
 const List = ({ items, ...list }) => {
-  const { creatable, label, id, visible } = list;
+  const { creatable, label, id, visible, swapable } = list;
   const { handleAddListSectionToList } = useContext(FormStateContext);
   const [isListOpen, setIsListOpen] = useState(visible);
+
+  const currPathId = list.pathId || id;
 
   return (
     <ListContainer isListOpen={isListOpen} className="list-container">
@@ -21,7 +23,7 @@ const List = ({ items, ...list }) => {
           <button
             className="add-list-section-button"
             type="button"
-            onClick={() => handleAddListSectionToList(list.pathId || id)}
+            onClick={() => handleAddListSectionToList(currPathId)}
           >
             Add
           </button>
@@ -30,15 +32,16 @@ const List = ({ items, ...list }) => {
       <div className="list-wrapper">
         {items.map((section, index) => {
           //* extend pathId with the index of the section
-          const pathId = `${list.pathId || id}.${index}`;
+          const pathId = `${currPathId}.${index}`;
 
           return (
             <ListSection
               key={pathId}
               items={section}
+              swapable={swapable}
               pathId={pathId}
               pathInfo={{
-                pathId: list.pathId,
+                pathId: currPathId,
                 index: index,
               }}
             />

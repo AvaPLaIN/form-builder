@@ -69,7 +69,6 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
-  //TODO - adjust with pathIdInfo
   const handleDeleteListSectionFromList = (pathId, pathIdInfo) => {
     //* clone the current form
     const currForm = cloneDeep(items);
@@ -95,19 +94,62 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedCurrForm);
   };
 
-  //TODO - swap the order of two list sections
   const handleMoveListSectionDown = (pathId, index) => {
-    console.log(pathId, index);
+    //* clone the current form
+    const newItems = cloneDeep(items);
 
-    //TODO check if index is last element -> return
+    //* convert pathId to valid path for Objectss
+    const controlObjectPathId = `${pathId.replace(/\d+/g, "items.$&")}.items`;
 
-    //TODO get current list section from form
+    const currListObject = get(newItems, controlObjectPathId);
+    const currListObjectLength = currListObject.length;
 
-    //TODO get element at index - 1 from form
+    //* return if list section is already last section
+    if (currListObjectLength === index + 1) return;
 
-    //TODO swap the elements
+    //* swap the two list sections
+    const temp = currListObject[index];
+    currListObject[index] = currListObject[index + 1];
+    currListObject[index + 1] = temp;
 
-    //TODO set the new form state
+    //* merge the new list section to the form
+    const enhancedListSection = set(
+      newItems,
+      controlObjectPathId,
+      currListObject
+    );
+
+    //* set the new form state
+    setItems(enhancedListSection);
+  };
+
+  const handleMoveListSectionUp = (pathId, index) => {
+    //* clone the current form
+    const newItems = cloneDeep(items);
+
+    //* return if list section is already last section
+    if (index === 0) return;
+
+    //* convert pathId to valid path for Objectss
+    const controlObjectPathId = `${pathId.replace(/\d+/g, "items.$&")}.items`;
+
+    //* get current list
+    const currListObject = get(newItems, controlObjectPathId);
+
+    //* swap the two list sections
+    const temp = currListObject[index];
+    currListObject[index] = currListObject[index - 1];
+    currListObject[index - 1] = temp;
+
+    //* merge the new list section to the form
+    const enhancedListSection = set(
+      newItems,
+      controlObjectPathId,
+      currListObject
+    );
+
+    //* set the new form state
+    setItems(enhancedListSection);
   };
 
   return (
@@ -117,6 +159,7 @@ const FormBuilder = ({ form, template }) => {
         handleAddListSectionToList,
         handleDeleteListSectionFromList,
         handleMoveListSectionDown,
+        handleMoveListSectionUp,
       }}
     >
       <FormProvider {...methods}>

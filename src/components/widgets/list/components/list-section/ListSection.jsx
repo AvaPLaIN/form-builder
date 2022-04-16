@@ -2,26 +2,44 @@ import { useContext, memo } from "react";
 import FormStateContext from "../../../../../context/formState";
 import { ListSectionContainer } from "./ListSection.styles";
 import Controller from "../../../controller";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { MdDeleteOutline } from "react-icons/md";
 
-const ListSection = ({ items, pathId: id, pathInfo }) => {
-  const { handleDeleteListSectionFromList, handleMoveListSectionDown } =
-    useContext(FormStateContext);
+const ListSection = ({ items, pathId: id, pathInfo, swapable }) => {
+  const {
+    handleDeleteListSectionFromList,
+    handleMoveListSectionDown,
+    handleMoveListSectionUp,
+  } = useContext(FormStateContext);
 
   return (
     <ListSectionContainer className="list-section-container">
       <div className="controls">
-        <button>Up</button>
-        <button
-          type="button"
-          onClick={() => handleMoveListSectionDown(id, pathInfo.index)}
-        >
-          Down
-        </button>
+        {swapable && (
+          <>
+            <button
+              type="button"
+              onClick={() =>
+                handleMoveListSectionUp(pathInfo.pathId, pathInfo.index)
+              }
+            >
+              <IoIosArrowUp />
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                handleMoveListSectionDown(pathInfo.pathId, pathInfo.index)
+              }
+            >
+              <IoIosArrowDown />
+            </button>
+          </>
+        )}
         <button
           type="button"
           onClick={() => handleDeleteListSectionFromList(id, pathInfo.pathId)}
         >
-          Delete
+          <MdDeleteOutline />
         </button>
       </div>
       <div className="section">
