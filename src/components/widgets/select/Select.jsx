@@ -5,9 +5,8 @@ import get from "lodash/get";
 import { SelectContainer } from "./Select.styles";
 
 const Select = ({ ...item }) => {
-  const { rules, value, defaultValue, pathId, id, type, options } = item;
+  const { rules, pathId, id, type, options } = item;
   const { handleUpdateControl } = useContext(FormStateContext);
-  //* get the form context
   const {
     register,
     unregister,
@@ -15,6 +14,7 @@ const Select = ({ ...item }) => {
   } = useFormContext();
 
   const controlpathId = pathId || id;
+
   const errorMessage = get(errors, controlpathId)?.message;
 
   useEffect(() => {
