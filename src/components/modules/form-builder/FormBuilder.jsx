@@ -178,7 +178,7 @@ const FormBuilder = ({ form, template }) => {
         <StateContainer>
           <div className="config">
             <h3>Form Config</h3>
-            <pre>{JSON.stringify(form, undefined, 2)}</pre>
+            <pre>{JSON.stringify(items, undefined, 2)}</pre>
           </div>
           <div className="state">
             <h3>Form State</h3>
