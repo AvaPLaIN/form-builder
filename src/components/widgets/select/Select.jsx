@@ -2,6 +2,7 @@ import { useEffect, useContext, memo } from "react";
 import { useFormContext } from "react-hook-form";
 import FormStateContext from "../../../context/formState";
 import get from "lodash/get";
+import { SelectContainer } from "./Select.styles";
 
 const Select = ({ ...item }) => {
   const { rules, value, defaultValue, pathId, id, type, options } = item;
@@ -21,7 +22,7 @@ const Select = ({ ...item }) => {
   }, [controlpathId, unregister]);
 
   return (
-    <div className="control-container select-container">
+    <SelectContainer className="control-container select-container">
       <label className="label select-label" htmlFor={controlpathId}>
         {item.label}
       </label>
@@ -41,7 +42,7 @@ const Select = ({ ...item }) => {
         ))}
       </select>
       {errorMessage && <div className="error select-error">{errorMessage}</div>}
-    </div>
+    </SelectContainer>
   );
 };
 
