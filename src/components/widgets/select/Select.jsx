@@ -5,21 +5,40 @@ import get from "lodash/get";
 import { SelectContainer } from "./Select.styles";
 
 const Select = ({ ...item }) => {
-  const { rules, pathId, id, type, options } = item;
+  //* destructuring props
+  const { rules, value, pathId, id, type, options } = item;
+
   const { handleUpdateControl } = useContext(FormStateContext);
+
+  //* get the form context
   const {
     register,
     unregister,
     formState: { errors },
   } = useFormContext();
 
+  //* get controlPathId for control
   const controlpathId = pathId || id;
 
+  //* register the control
+  const { onChange, ...registerProps } = register(controlpathId, {
+    value: value || "",
+    ...rules,
+  });
+
+  //* get the error message for control
   const errorMessage = get(errors, controlpathId)?.message;
 
+  //* unregister control when unmounting
   useEffect(() => {
     return () => unregister(controlpathId);
   }, [controlpathId, unregister]);
+
+  //* update the control value
+  const handleOnChange = (event) => {
+    handleUpdateControl(controlpathId, event.target.value);
+    onChange(event);
+  };
 
   return (
     <SelectContainer className="control-container select-container">
@@ -29,10 +48,8 @@ const Select = ({ ...item }) => {
       <select
         className="control select"
         type={type}
-        {...register(controlpathId, { ...rules })}
-        onChange={(event) =>
-          handleUpdateControl(controlpathId, event.target.value)
-        }
+        onChange={handleOnChange}
+        {...registerProps}
         id={controlpathId}
       >
         {options?.map((option) => (

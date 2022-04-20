@@ -6,7 +6,7 @@ const formConfig = {
       label: "Username",
       control: "input",
       type: "text",
-      defaultValue: "TestInput",
+      value: "TestInput",
       rules: {
         required: {
           value: true,
@@ -60,7 +60,7 @@ const formConfig = {
             label: "Street",
             control: "input",
             type: "text",
-            defaultValue: "test",
+            value: "test",
             rules: {
               required: {
                 value: true,
@@ -92,7 +92,7 @@ const formConfig = {
                   label: "Street",
                   control: "input",
                   type: "text",
-                  defaultValue: "test",
+                  value: "test",
                   rules: {
                     required: {
                       value: true,
@@ -133,6 +133,27 @@ const formConfig = {
         maxLength: {
           value: 20,
           message: "Username must be at most 20 characters",
+        },
+      },
+    },
+    gender: {
+      id: "gender",
+      label: "Gender",
+      control: "select",
+      options: [
+        {
+          value: "male",
+          label: "Male",
+        },
+        {
+          value: "female",
+          label: "Female",
+        },
+      ],
+      rules: {
+        required: {
+          value: true,
+          message: "Gender is required",
         },
       },
     },

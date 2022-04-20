@@ -5,8 +5,11 @@ import get from "lodash/get";
 import { InputContainer } from "./Input.styles";
 
 const Input = ({ ...item }) => {
-  const { rules, value, defaultValue, pathId, id, type } = item;
+  //* destructuring props
+  const { rules, value, pathId, id, type } = item;
+
   const { handleUpdateControl } = useContext(FormStateContext);
+
   //* get the form context
   const {
     register,
@@ -14,12 +17,28 @@ const Input = ({ ...item }) => {
     formState: { errors },
   } = useFormContext();
 
+  //* get controlPathId for control
   const controlpathId = pathId || id;
+
+  //* register the control
+  const { onChange, ...registerProps } = register(controlpathId, {
+    value: value || "",
+    ...rules,
+  });
+
+  //* get the error message for control
   const errorMessage = get(errors, controlpathId)?.message;
 
+  //* unregister control when unmounting
   useEffect(() => {
     return () => unregister(controlpathId);
   }, [controlpathId, unregister]);
+
+  //* update the control value
+  const handleOnChange = (event) => {
+    handleUpdateControl(controlpathId, event.target.value);
+    onChange(event);
+  };
 
   return (
     <InputContainer className="control-container input-container">
@@ -29,11 +48,8 @@ const Input = ({ ...item }) => {
       <input
         className="control input"
         type={type}
-        {...register(controlpathId, { ...rules })}
-        onChange={(event) =>
-          handleUpdateControl(controlpathId, event.target.value)
-        }
-        value={value || defaultValue || ""}
+        onChange={handleOnChange}
+        {...registerProps}
         id={controlpathId}
       />
       {errorMessage && <div className="error input-error">{errorMessage}</div>}
