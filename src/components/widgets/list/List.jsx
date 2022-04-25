@@ -1,4 +1,4 @@
-import { useState, useContext, memo } from "react";
+import { memo, useContext, useState } from "react";
 import FormStateContext from "../../../context/formState";
 import ListSection from "./components/list-section";
 import { ListContainer } from "./List.styles";

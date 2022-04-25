@@ -1,9 +1,9 @@
-import { useContext, memo } from "react";
-import FormStateContext from "../../../../../context/formState";
-import { ListSectionContainer } from "./ListSection.styles";
-import Controller from "../../../controller";
+import { memo, useContext } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
+import FormStateContext from "../../../../../context/formState";
+import Controller from "../../../controller";
+import { ListSectionContainer } from "./ListSection.styles";
 
 const ListSection = ({ items, pathId: id, pathInfo, swapable }) => {
   const {

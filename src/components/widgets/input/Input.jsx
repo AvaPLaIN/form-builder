@@ -1,7 +1,7 @@
-import { useEffect, useContext, memo } from "react";
+import get from "lodash/get";
+import { memo, useContext, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import FormStateContext from "../../../context/formState";
-import get from "lodash/get";
 import { InputContainer } from "./Input.styles";
 
 const Input = ({ ...item }) => {

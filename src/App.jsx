@@ -1,6 +1,6 @@
 import React from "react";
-import formConfig from "./data/form-config";
 import FormBuilder from "./components/modules/form-builder/FormBuilder";
+import formConfig from "./data/form-config";
 
 function App() {
   return (

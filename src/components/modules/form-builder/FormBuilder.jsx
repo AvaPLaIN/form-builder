@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import Controller from "../../widgets/controller";
-import { FormBuilderContainer, StateContainer } from "./FormBuilder.styles";
-import FormStateContext from "../../../context/formState";
+import cloneDeep from "lodash/cloneDeep";
+import compact from "lodash/compact";
 import get from "lodash/get";
 import set from "lodash/set";
 import unset from "lodash/unset";
-import compact from "lodash/compact";
-import cloneDeep from "lodash/cloneDeep";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import FormStateContext from "../../../context/formState";
 import addUUIDToTemplate from "../../../utils/addUUIDToTemplate";
-
-//TODO - check if useCallback is needed
+import Controller from "../../widgets/controller";
+import { FormBuilderContainer, StateContainer } from "./FormBuilder.styles";
 
 const FormBuilder = ({ form, template }) => {
   const [items, setItems] = useState(form);
@@ -99,7 +97,7 @@ const FormBuilder = ({ form, template }) => {
     //* clone the current form
     const newItems = cloneDeep(items);
 
-    //* convert pathId to valid path for Objectss
+    //* convert pathId to valid path for Objects
     const controlObjectPathId = `${pathId.replace(/\d+/g, "items.$&")}.items`;
 
     const currListObject = get(newItems, controlObjectPathId);
@@ -157,6 +155,7 @@ const FormBuilder = ({ form, template }) => {
     <FormStateContext.Provider
       value={{
         handleUpdateControl,
+        // handleClearForm,
         handleAddListSectionToList,
         handleDeleteListSectionFromList,
         handleMoveListSectionDown,
@@ -173,6 +172,9 @@ const FormBuilder = ({ form, template }) => {
               <Controller key={item.uuid} item={item} />
             ))}
             <button type="submit">Submit</button>
+            {/* <button type="button" onClick={handleClearForm}>
+              Clear
+            </button> */}
           </form>
         </FormBuilderContainer>
         <StateContainer>
