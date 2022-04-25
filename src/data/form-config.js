@@ -42,6 +42,20 @@ const formConfig = {
             },
           },
         },
+        item2: {
+          uuid: "324bcrf6-jb9k-2d3a-a757-ad93a9406b61",
+          id: "item2",
+          label: "Item",
+          control: "input",
+          type: "text",
+          value: "item2",
+          rules: {
+            required: {
+              value: true,
+              message: "Street is required",
+            },
+          },
+        },
       },
     },
     gender: {
