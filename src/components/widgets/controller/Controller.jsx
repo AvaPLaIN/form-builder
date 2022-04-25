@@ -1,12 +1,14 @@
 import { memo } from "react";
-import List from "../list";
+import Group from "../group";
 import Input from "../input";
+import List from "../list";
 import Select from "../select";
 
 const Controller = ({ item, ...props }) => {
   const controlMap = {
-    list: List,
+    group: Group,
     input: Input,
+    list: List,
     select: Select,
   };
 

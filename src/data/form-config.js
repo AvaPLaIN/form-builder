@@ -22,6 +22,28 @@ const formConfig = {
         },
       },
     },
+    group: {
+      uuid: "679bafk8-hj1d-4h7f-a684-ad93b9426b42",
+      id: "group",
+      label: "Group",
+      control: "group",
+      items: {
+        item: {
+          uuid: "324bctf6-jb9k-1d3g-a757-ad93a9406b61",
+          id: "item",
+          label: "Item",
+          control: "input",
+          type: "text",
+          value: "TestInput",
+          rules: {
+            required: {
+              value: true,
+              message: "Street is required",
+            },
+          },
+        },
+      },
+    },
     gender: {
       uuid: "374baaf3-db1b-3d5t-u787-ed93e9306b67",
       id: "gender",
