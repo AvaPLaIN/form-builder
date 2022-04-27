@@ -35,12 +35,8 @@ const FormBuilder = ({ form, template }) => {
     //* clone the current form
     const currForm = cloneDeep(items);
 
-    //* convert pathIds to valid path for Objects
-    const controlObjectPathId = pathId.replace(/\d+/g, "items.$&");
-    const controlTemplatePathId = `${controlObjectPathId.replace(
-      /\d+/g,
-      "0"
-    )}.items.0`;
+    //* convert pathId to template pathId
+    const controlTemplatePathId = `${pathId.replace(/\d+/g, "0")}.items.0`;
 
     //* get the current template object
     const currTemplate = cloneDeep(get(template, controlTemplatePathId));
@@ -49,7 +45,7 @@ const FormBuilder = ({ form, template }) => {
     const clonedCurrTemplate = addUUIDToTemplate(currTemplate);
 
     //* get the current list section from form
-    const currentListSection = get(currForm, `${controlObjectPathId}.items`);
+    const currentListSection = get(currForm, `${pathId}.items`);
 
     //* add template to the list section
     currentListSection.push(clonedCurrTemplate);
@@ -57,7 +53,7 @@ const FormBuilder = ({ form, template }) => {
     //* merge the new list section to the form
     const enhancedListSection = set(
       currForm,
-      `${controlObjectPathId}.items`,
+      `${pathId}.items`,
       currentListSection
     );
 
