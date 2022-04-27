@@ -1,261 +1,204 @@
 const formConfig = {
   form: {
-    username: {
-      uuid: "344baaf2-db7b-4d5f-a787-ed93e9306a67",
-      id: "username",
-      label: "Username",
-      control: "input",
-      type: "text",
-      value: "TestInput",
-      rules: {
-        required: {
-          value: true,
-          message: "Username is required",
-        },
-        minLength: {
-          value: 5,
-          message: "Username must be at least 5 characters",
-        },
-        maxLength: {
-          value: 20,
-          message: "Username must be at most 20 characters",
-        },
-      },
-    },
-    group: {
+    person: {
       uuid: "679bafk8-hj1d-4h7f-a684-ad93b9426b42",
-      id: "group",
-      label: "Group",
+      id: "person",
+      label: "Person",
       control: "group",
       items: {
-        item: {
-          uuid: "324bctf6-jb9k-1d3g-a757-ad93a9406b61",
-          id: "item",
-          label: "Item",
-          control: "input",
-          type: "text",
-          value: "TestInput",
-          rules: {
-            required: {
-              value: true,
-              message: "Street is required",
+        info: {
+          uuid: "679bctu3-hz6d-9h1f-a684-ad93b9426b42",
+          id: "info",
+          label: "Info",
+          control: "group",
+          items: {
+            firstName: {
+              uuid: "619ahcu8-hz6d-9h1t-a681-ad93b9426b42",
+              id: "firstName",
+              label: "First Name",
+              control: "input",
+              type: "text",
+              value: "test",
+            },
+            lastName: {
+              uuid: "679bczu1-hz6d-9h1f-a647-ht93b9426b42",
+              id: "lastName",
+              label: "Last Name",
+              control: "input",
+              type: "text",
+            },
+            gender: {
+              uuid: "374baaf3-db1b-3d5t-u787-ed93e9306b67",
+              id: "gender",
+              label: "Gender",
+              control: "select",
+              options: [
+                {
+                  value: "male",
+                  label: "Male",
+                },
+                {
+                  value: "female",
+                  label: "Female",
+                },
+              ],
             },
           },
         },
-        item2: {
-          uuid: "324bcrf6-jb9k-2d3a-a757-ad93a9406b61",
-          id: "item2",
-          label: "Item",
-          control: "input",
-          type: "text",
-          value: "item2",
-          rules: {
-            required: {
-              value: true,
-              message: "Street is required",
-            },
-          },
-        },
-      },
-    },
-    gender: {
-      uuid: "374baaf3-db1b-3d5t-u787-ed93e9306b67",
-      id: "gender",
-      label: "Gender",
-      control: "select",
-      options: [
-        {
-          value: "male",
-          label: "Male",
-        },
-        {
-          value: "female",
-          label: "Female",
-        },
-      ],
-      rules: {
-        required: {
-          value: true,
-          message: "Gender is required",
-        },
-      },
-    },
-    address: {
-      uuid: "f8f8f8f8-f8f8-f8f8-f8f8-f8f8f8f8f8f8",
-      id: "address",
-      label: "Adresse",
-      control: "list",
-      creatable: true,
-      swapable: true,
-      visible: true,
-      items: [
-        {
-          street: {
-            uuid: "9665c4c6-e34b-46b3-bc8c-3c2e296af25f",
-            id: "street",
-            label: "Street",
-            control: "input",
-            type: "text",
-            value: "test",
-            rules: {
-              required: {
-                value: true,
-                message: "Username is required",
-              },
-              minLength: {
-                value: 5,
-                message: "Username must be at least 5 characters",
-              },
-              maxLength: {
-                value: 20,
-                message: "Username must be at most 20 characters",
-              },
-            },
-          },
-          address: {
-            uuid: "f8f8f8f8-f8f8-f8f8-f8f8-f8f8f8f8f8f8",
-            id: "address",
-            label: "Adresse",
-            control: "list",
-            creatable: true,
-            swapable: true,
-            visible: true,
-            items: [
-              {
+        address: {
+          uuid: "f8f4f8g6-a2h7-w8jv-w1k9-f8f8f8f8f8f8",
+          id: "address",
+          label: "Adresse",
+          control: "group",
+          items: {
+            main: {
+              uuid: "f8f4f8g6-a2h7-w8jv-w1k9-f8t4z9q2b5n1",
+              id: "main",
+              label: "Main Address",
+              control: "group",
+              items: {
                 street: {
-                  uuid: "9665c4c6-e34b-46b2-bc8c-3c2e296ad25f",
+                  uuid: "f2z8u1g6-a2h7-w8jv-w1k9-p8o8i8u8t8r8",
                   id: "street",
                   label: "Street",
                   control: "input",
                   type: "text",
-                  value: "test",
-                  rules: {
-                    required: {
-                      value: true,
-                      message: "Username is required",
-                    },
-                    minLength: {
-                      value: 5,
-                      message: "Username must be at least 5 characters",
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: "Username must be at most 20 characters",
-                    },
-                  },
+                },
+                city: {
+                  uuid: "f2z8u1t1-b1u3-j8jw-r1k1-p8o8i8u8t8r8",
+                  id: "city",
+                  label: "City",
+                  control: "input",
+                  type: "text",
                 },
               },
-            ],
+            },
+            sub: {
+              uuid: "f1z4i8c8-a1y7-w8jv-w1k9-t8t4z9q2b5n2",
+              id: "sub",
+              label: "Sub Address",
+              control: "list",
+              creatable: true,
+              swapable: true,
+              visible: true,
+              items: [],
+            },
           },
         },
-      ],
+      },
     },
   },
   template: {
-    username: {
-      id: "username",
-      label: "Username",
-      control: "input",
-      type: "text",
-      rules: {
-        required: {
-          value: true,
-          message: "Username is required",
-        },
-        minLength: {
-          value: 5,
-          message: "Username must be at least 5 characters",
-        },
-        maxLength: {
-          value: 20,
-          message: "Username must be at most 20 characters",
-        },
-      },
-    },
-    gender: {
-      id: "gender",
-      label: "Gender",
-      control: "select",
-      options: [
-        {
-          value: "male",
-          label: "Male",
-        },
-        {
-          value: "female",
-          label: "Female",
-        },
-      ],
-      rules: {
-        required: {
-          value: true,
-          message: "Gender is required",
-        },
-      },
-    },
-    address: {
-      id: "address",
-      label: "Adresse",
-      control: "list",
-      creatable: true,
-      swapable: true,
-      visible: true,
-      items: [
-        {
-          street: {
-            id: "street",
-            label: "Street",
-            control: "input",
-            type: "text",
-            rules: {
-              required: {
-                value: true,
-                message: "Username is required",
-              },
-              minLength: {
-                value: 5,
-                message: "Username must be at least 5 characters",
-              },
-              maxLength: {
-                value: 20,
-                message: "Username must be at most 20 characters",
+    person: {
+      id: "person",
+      label: "Person",
+      control: "group",
+      items: {
+        info: {
+          id: "info",
+          label: "Info",
+          control: "group",
+          items: {
+            firstName: {
+              id: "firstName",
+              label: "First Name",
+              control: "input",
+              type: "text",
+            },
+            lastName: {
+              id: "lastName",
+              label: "Last Name",
+              control: "input",
+              type: "text",
+            },
+            gender: {
+              id: "gender",
+              label: "Gender",
+              control: "select",
+              options: [
+                {
+                  value: "male",
+                  label: "Male",
+                },
+                {
+                  value: "female",
+                  label: "Female",
+                },
+              ],
+              rules: {
+                required: {
+                  value: true,
+                  message: "Gender is required",
+                },
               },
             },
           },
-          address: {
-            id: "address",
-            label: "Adresse",
-            control: "list",
-            creatable: true,
-            swapable: true,
-            visible: true,
-            items: [
-              {
+        },
+        address: {
+          id: "address",
+          label: "Adresse",
+          control: "group",
+          items: {
+            main: {
+              id: "main",
+              label: "Main Address",
+              control: "group",
+              items: {
                 street: {
                   id: "street",
                   label: "Street",
                   control: "input",
                   type: "text",
-                  rules: {
-                    required: {
-                      value: true,
-                      message: "Username is required",
-                    },
-                    minLength: {
-                      value: 5,
-                      message: "Username must be at least 5 characters",
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: "Username must be at most 20 characters",
+                },
+                city: {
+                  id: "city",
+                  label: "City",
+                  control: "input",
+                  type: "text",
+                },
+              },
+            },
+            sub: {
+              id: "sub",
+              label: "Sub Address",
+              control: "list",
+              creatable: true,
+              swapable: true,
+              visible: true,
+              items: [
+                {
+                  address: {
+                    id: "address",
+                    label: "Adresse",
+                    control: "group",
+                    items: {
+                      main: {
+                        id: "main",
+                        label: "Main Address",
+                        control: "group",
+                        items: {
+                          street: {
+                            id: "street",
+                            label: "Street",
+                            control: "input",
+                            type: "text",
+                          },
+                          city: {
+                            id: "city",
+                            label: "City",
+                            control: "input",
+                            type: "text",
+                          },
+                        },
+                      },
                     },
                   },
                 },
-              },
-            ],
+              ],
+            },
           },
         },
-      ],
+      },
     },
   },
 };

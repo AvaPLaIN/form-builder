@@ -9,8 +9,11 @@ const addUUIDToTemplate = (template) => {
       if (!item?.uuid) {
         item.uuid = uuidv4();
       }
-      if (item?.items) {
+      if (item?.items && Array.isArray(item?.items) && item?.items) {
         loopOverObject(item.items[0]);
+      }
+      if (item?.items && !Array.isArray(item?.items)) {
+        loopOverObject(item.items);
       }
     });
   };

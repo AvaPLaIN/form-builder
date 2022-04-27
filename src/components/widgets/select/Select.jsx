@@ -6,7 +6,7 @@ import { SelectContainer } from "./Select.styles";
 
 const Select = ({ ...item }) => {
   //* destructuring props
-  const { rules, value, pathId, id, type, options } = item;
+  const { rules, value, savePathId, objectPathId, id, type, options } = item;
 
   const { handleUpdateControl } = useContext(FormStateContext);
 
@@ -17,32 +17,33 @@ const Select = ({ ...item }) => {
     formState: { errors },
   } = useFormContext();
 
-  //* get controlPathId for control
-  const controlpathId = pathId || id;
+  //* get currSavePathId for control
+  const currSavePathId = savePathId || id;
+  const currObjectPathId = objectPathId || id;
 
   //* register the control
-  const { onChange, ...registerProps } = register(controlpathId, {
+  const { onChange, ...registerProps } = register(currSavePathId, {
     value: value || "",
     ...rules,
   });
 
   //* get the error message for control
-  const errorMessage = get(errors, controlpathId)?.message;
+  const errorMessage = get(errors, currSavePathId)?.message;
 
   //* unregister control when unmounting
   useEffect(() => {
-    return () => unregister(controlpathId);
-  }, [controlpathId, unregister]);
+    return () => unregister(currSavePathId);
+  }, [currSavePathId, unregister]);
 
   //* update the control value
   const handleOnChange = (event) => {
-    handleUpdateControl(controlpathId, event.target.value);
+    handleUpdateControl(currObjectPathId || currSavePathId, event.target.value);
     onChange(event);
   };
 
   return (
     <SelectContainer className="control-container select-container">
-      <label className="label select-label" htmlFor={controlpathId}>
+      <label className="label select-label" htmlFor={currSavePathId}>
         {item.label}
       </label>
       <select
@@ -50,7 +51,7 @@ const Select = ({ ...item }) => {
         type={type}
         onChange={handleOnChange}
         {...registerProps}
-        id={controlpathId}
+        id={currSavePathId}
       >
         {options?.map((option) => (
           <option key={option.value} value={option.value}>

@@ -5,7 +5,13 @@ import FormStateContext from "../../../../../context/formState";
 import Controller from "../../../controller";
 import { ListSectionContainer } from "./ListSection.styles";
 
-const ListSection = ({ items, pathId: id, pathInfo, swapable }) => {
+const ListSection = ({
+  items,
+  savePathId: currSavePathId,
+  objectPathId: currObjectPathId,
+  pathInfo,
+  swapable,
+}) => {
   const {
     handleDeleteListSectionFromList,
     handleMoveListSectionDown,
@@ -37,21 +43,25 @@ const ListSection = ({ items, pathId: id, pathInfo, swapable }) => {
         )}
         <button
           type="button"
-          onClick={() => handleDeleteListSectionFromList(id, pathInfo.pathId)}
+          onClick={() =>
+            handleDeleteListSectionFromList(currSavePathId, pathInfo.pathId)
+          }
         >
           <MdDeleteOutline />
         </button>
       </div>
       <div className="section">
         {Object.values(items).map((item) => {
-          //* extend pathId with id of the item
-          const pathId = `${id}.${item.id}`;
+          //* extend pathIds with id of the item
+          const savePathId = `${currSavePathId}.${item.id}`;
+          const objectPathId = `${currObjectPathId}.${item.id}`;
 
           return (
             <Controller
-              key={`${pathId}.${item?.uuid}`}
+              key={`${objectPathId}.${item?.uuid}`}
               item={item}
-              pathId={pathId}
+              savePathId={savePathId}
+              objectPathId={objectPathId}
             />
           );
         })}

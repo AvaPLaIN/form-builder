@@ -8,7 +8,8 @@ const List = ({ items, ...list }) => {
   const { handleAddListSectionToList } = useContext(FormStateContext);
   const [isListOpen, setIsListOpen] = useState(visible);
 
-  const currPathId = list.pathId || id;
+  const currSavePathId = list.savePathId || id;
+  const currObjectPathId = list.objectPathId || id;
 
   return (
     <ListContainer isListOpen={isListOpen} className="list-container">
@@ -23,7 +24,7 @@ const List = ({ items, ...list }) => {
           <button
             className="add-list-section-button"
             type="button"
-            onClick={() => handleAddListSectionToList(currPathId)}
+            onClick={() => handleAddListSectionToList(currObjectPathId)}
           >
             Add
           </button>
@@ -32,16 +33,18 @@ const List = ({ items, ...list }) => {
       <div className="list-wrapper">
         {items.map((section, index) => {
           //* extend pathId with the index of the section
-          const pathId = `${currPathId}.${index}`;
+          const savePathId = `${currSavePathId}.${index}`;
+          const objectPathId = `${currObjectPathId}.items.${index}`;
 
           return (
             <ListSection
-              key={pathId}
+              key={savePathId}
               items={section}
               swapable={swapable}
-              pathId={pathId}
+              savePathId={savePathId}
+              objectPathId={objectPathId}
               pathInfo={{
-                pathId: currPathId,
+                pathId: currSavePathId,
                 index: index,
               }}
             />

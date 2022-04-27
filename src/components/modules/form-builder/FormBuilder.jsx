@@ -21,14 +21,11 @@ const FormBuilder = ({ form, template }) => {
   const handleUpdateControl = (pathId, value) => {
     const newItems = cloneDeep(items);
 
-    //* convert pathId to valid path for Objects
-    const controlObjectPathId = pathId.replace(/\d+/g, "items.$&");
-
     //* get the control object
-    const currControlObject = get(newItems, controlObjectPathId);
+    const currControlObject = get(newItems, pathId);
 
     //* update items with new value
-    set(newItems, controlObjectPathId, { ...currControlObject, value });
+    set(newItems, pathId, { ...currControlObject, value });
 
     //* set the new form state
     setItems(newItems);
