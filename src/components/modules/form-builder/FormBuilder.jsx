@@ -61,6 +61,7 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
+  // TODO - remove old pathId
   const handleDeleteListSectionFromList = (pathId, pathIdInfo) => {
     //* clone the current form
     const currForm = cloneDeep(items);

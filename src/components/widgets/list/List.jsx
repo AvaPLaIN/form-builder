@@ -44,6 +44,7 @@ const List = ({ items, ...list }) => {
               savePathId={savePathId}
               objectPathId={objectPathId}
               pathInfo={{
+                // TODO - work with savePathId and objectPathId
                 pathId: currSavePathId,
                 index: index,
               }}
