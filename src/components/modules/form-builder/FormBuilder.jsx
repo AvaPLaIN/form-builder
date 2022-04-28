@@ -85,15 +85,14 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedCurrForm);
   };
 
-  // TODO - remove old pathId
-  const handleMoveListSectionDown = (pathId, index) => {
+  const handleMoveListSectionDown = (currListSectionPathId, index) => {
     //* clone the current form
     const newItems = cloneDeep(items);
 
     //* convert pathId to valid path for Objects
-    const controlObjectPathId = `${pathId.replace(/\d+/g, "items.$&")}.items`;
+    const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
-    const currListObject = get(newItems, controlObjectPathId);
+    const currListObject = get(newItems, listSectionItemsPathId);
     const currListObjectLength = currListObject.length;
 
     //* return if list section is already last section
@@ -107,7 +106,7 @@ const FormBuilder = ({ form, template }) => {
     //* merge the new list section to the form
     const enhancedListSection = set(
       newItems,
-      controlObjectPathId,
+      listSectionItemsPathId,
       currListObject
     );
 
@@ -115,6 +114,7 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
+  // TODO - remove old pathId
   const handleMoveListSectionUp = (pathId, index) => {
     //* clone the current form
     const newItems = cloneDeep(items);
