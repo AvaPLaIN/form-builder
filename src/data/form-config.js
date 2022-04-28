@@ -169,27 +169,20 @@ const formConfig = {
                 {
                   address: {
                     id: "address",
-                    label: "Adresse",
+                    label: "Sub Adresse",
                     control: "group",
                     items: {
-                      main: {
-                        id: "main",
-                        label: "Main Address",
-                        control: "group",
-                        items: {
-                          street: {
-                            id: "street",
-                            label: "Street",
-                            control: "input",
-                            type: "text",
-                          },
-                          city: {
-                            id: "city",
-                            label: "City",
-                            control: "input",
-                            type: "text",
-                          },
-                        },
+                      street: {
+                        id: "street",
+                        label: "Street",
+                        control: "input",
+                        type: "text",
+                      },
+                      city: {
+                        id: "city",
+                        label: "City",
+                        control: "input",
+                        type: "text",
                       },
                     },
                   },
