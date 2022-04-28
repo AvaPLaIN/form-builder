@@ -18,25 +18,25 @@ const FormBuilder = ({ form, template }) => {
 
   const onSubmit = (data) => setData(data);
 
-  const handleUpdateControl = (pathId, value) => {
+  const handleUpdateControl = (currObjectPathId, value) => {
     const newItems = cloneDeep(items);
 
     //* get the control object
-    const currControlObject = get(newItems, pathId);
+    const currControlObject = get(newItems, currObjectPathId);
 
     //* update items with new value
-    set(newItems, pathId, { ...currControlObject, value });
+    set(newItems, currObjectPathId, { ...currControlObject, value });
 
     //* set the new form state
     setItems(newItems);
   };
 
-  const handleAddListSectionToList = (pathId) => {
-    //* clone the current form
+  const handleAddListSectionToList = (currObjectPathId) => {
     const currForm = cloneDeep(items);
-
-    //* convert pathId to template pathId
-    const controlTemplatePathId = `${pathId.replace(/\d+/g, "0")}.items.0`;
+    const controlTemplatePathId = `${currObjectPathId.replace(
+      /\d+/g,
+      "0"
+    )}.items.0`;
 
     //* get the current template object
     const currTemplate = cloneDeep(get(template, controlTemplatePathId));
@@ -45,7 +45,7 @@ const FormBuilder = ({ form, template }) => {
     const clonedCurrTemplate = addUUIDToTemplate(currTemplate);
 
     //* get the current list section from form
-    const currentListSection = get(currForm, `${pathId}.items`);
+    const currentListSection = get(currForm, `${currObjectPathId}.items`);
 
     //* add template to the list section
     currentListSection.push(clonedCurrTemplate);
@@ -53,7 +53,7 @@ const FormBuilder = ({ form, template }) => {
     //* merge the new list section to the form
     const enhancedListSection = set(
       currForm,
-      `${pathId}.items`,
+      `${currObjectPathId}.items`,
       currentListSection
     );
 
@@ -65,10 +65,7 @@ const FormBuilder = ({ form, template }) => {
     currObjectPathId,
     currListSectionPathId
   ) => {
-    //* clone the current form
     const currForm = cloneDeep(items);
-
-    //* convert pathIds to valid path for Objects
     const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
     //* unset object with path from form
@@ -86,10 +83,7 @@ const FormBuilder = ({ form, template }) => {
   };
 
   const handleMoveListSectionDown = (currListSectionPathId, index) => {
-    //* clone the current form
     const newItems = cloneDeep(items);
-
-    //* convert pathId to valid path for Objects
     const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
     const currListObject = get(newItems, listSectionItemsPathId);
@@ -115,13 +109,12 @@ const FormBuilder = ({ form, template }) => {
   };
 
   const handleMoveListSectionUp = (currListSectionPathId, index) => {
-    //* clone the current form
     const newItems = cloneDeep(items);
 
     //* return if list section is already last section
     if (index === 0) return;
 
-    //* convert pathId to valid path for Objectss
+    //* convert pathId to valid path for Objects
     const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
     //* get current list

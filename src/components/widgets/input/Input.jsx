@@ -37,7 +37,7 @@ const Input = ({ ...item }) => {
 
   //* update the control value
   const handleOnChange = (event) => {
-    handleUpdateControl(currObjectPathId || currSavePathId, event.target.value);
+    handleUpdateControl(currObjectPathId, event.target.value);
     onChange(event);
   };
 
