@@ -17,7 +17,7 @@ const Select = ({ ...item }) => {
     formState: { errors },
   } = useFormContext();
 
-  //* get currSavePathId for control
+  //* get currPathIds for control
   const currSavePathId = savePathId || id;
   const currObjectPathId = objectPathId || id;
 
@@ -37,7 +37,7 @@ const Select = ({ ...item }) => {
 
   //* update the control value
   const handleOnChange = (event) => {
-    handleUpdateControl(currObjectPathId || currSavePathId, event.target.value);
+    handleUpdateControl(currObjectPathId, event.target.value);
     onChange(event);
   };
 

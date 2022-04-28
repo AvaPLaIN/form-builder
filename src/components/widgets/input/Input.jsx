@@ -17,7 +17,7 @@ const Input = ({ ...item }) => {
     formState: { errors },
   } = useFormContext();
 
-  //* get currSavePathId for control
+  //* get currPathIds for control
   const currSavePathId = savePathId || id;
   const currObjectPathId = objectPathId || id;
 
