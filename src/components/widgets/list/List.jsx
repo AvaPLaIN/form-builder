@@ -43,9 +43,9 @@ const List = ({ items, ...list }) => {
               swapable={swapable}
               savePathId={savePathId}
               objectPathId={objectPathId}
-              pathInfo={{
-                // TODO - work with savePathId and objectPathId
-                pathId: currSavePathId,
+              pathIdInfo={{
+                savePathId: currSavePathId,
+                objectPathId: currObjectPathId,
                 index: index,
               }}
             />

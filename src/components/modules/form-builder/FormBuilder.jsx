@@ -61,32 +61,31 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
-  // TODO - remove old pathId
-  const handleDeleteListSectionFromList = (pathId, pathIdInfo) => {
+  const handleDeleteListSectionFromList = (
+    currObjectPathId,
+    currListSectionPathId
+  ) => {
     //* clone the current form
     const currForm = cloneDeep(items);
 
     //* convert pathIds to valid path for Objects
-    const controlObjectPathId = pathId.replace(/\d+/g, "items.$&");
-    const controlObjectPathIdInfo = `${pathIdInfo.replace(
-      /\d+/g,
-      "items.$&"
-    )}.items`;
+    const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
     //* unset object with path from form
-    unset(currForm, controlObjectPathId);
+    unset(currForm, currObjectPathId);
 
     //* get compact object of form
     const enhancedCurrForm = set(
       currForm,
-      controlObjectPathIdInfo,
-      compact(get(currForm, controlObjectPathIdInfo))
+      listSectionItemsPathId,
+      compact(get(currForm, listSectionItemsPathId))
     );
 
     //* set the new form state
     setItems(enhancedCurrForm);
   };
 
+  // TODO - remove old pathId
   const handleMoveListSectionDown = (pathId, index) => {
     //* clone the current form
     const newItems = cloneDeep(items);

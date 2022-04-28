@@ -9,7 +9,7 @@ const ListSection = ({
   items,
   savePathId: currSavePathId,
   objectPathId: currObjectPathId,
-  pathInfo,
+  pathIdInfo,
   swapable,
 }) => {
   const {
@@ -26,7 +26,10 @@ const ListSection = ({
             <button
               type="button"
               onClick={() =>
-                handleMoveListSectionUp(pathInfo.pathId, pathInfo.index)
+                handleMoveListSectionUp(
+                  pathIdInfo.objectPathId,
+                  pathIdInfo.index
+                )
               }
             >
               <IoIosArrowUp />
@@ -34,7 +37,10 @@ const ListSection = ({
             <button
               type="button"
               onClick={() =>
-                handleMoveListSectionDown(pathInfo.pathId, pathInfo.index)
+                handleMoveListSectionDown(
+                  pathIdInfo.objectPathId,
+                  pathIdInfo.index
+                )
               }
             >
               <IoIosArrowDown />
@@ -44,7 +50,10 @@ const ListSection = ({
         <button
           type="button"
           onClick={() =>
-            handleDeleteListSectionFromList(currSavePathId, pathInfo.pathId)
+            handleDeleteListSectionFromList(
+              currObjectPathId,
+              pathIdInfo.objectPathId
+            )
           }
         >
           <MdDeleteOutline />
