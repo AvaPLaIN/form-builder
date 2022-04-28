@@ -114,8 +114,7 @@ const FormBuilder = ({ form, template }) => {
     setItems(enhancedListSection);
   };
 
-  // TODO - remove old pathId
-  const handleMoveListSectionUp = (pathId, index) => {
+  const handleMoveListSectionUp = (currListSectionPathId, index) => {
     //* clone the current form
     const newItems = cloneDeep(items);
 
@@ -123,10 +122,10 @@ const FormBuilder = ({ form, template }) => {
     if (index === 0) return;
 
     //* convert pathId to valid path for Objectss
-    const controlObjectPathId = `${pathId.replace(/\d+/g, "items.$&")}.items`;
+    const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
     //* get current list
-    const currListObject = get(newItems, controlObjectPathId);
+    const currListObject = get(newItems, listSectionItemsPathId);
 
     //* swap the two list sections
     const temp = currListObject[index];
@@ -136,7 +135,7 @@ const FormBuilder = ({ form, template }) => {
     //* merge the new list section to the form
     const enhancedListSection = set(
       newItems,
-      controlObjectPathId,
+      listSectionItemsPathId,
       currListObject
     );
 
