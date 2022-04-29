@@ -42,7 +42,10 @@ const Input = ({ ...item }) => {
   };
 
   return (
-    <InputContainer className="control-container input-container">
+    <InputContainer
+      className="control-container input-container"
+      data-testid="input"
+    >
       <label className="label input-label" htmlFor={currSavePathId}>
         {item.label}
       </label>

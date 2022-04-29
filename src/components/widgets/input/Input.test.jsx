@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import FormbuilderWrapper from "../../../tests/context";
+import FormBuilder from "../../modules/form-builder/FormBuilder";
 
+//* input Configuration
 const inputConfig = {
   form: {
     inputId: {
@@ -22,12 +23,12 @@ const inputConfig = {
 };
 
 const ContextInputComponent = ({ config }) => {
-  return <FormbuilderWrapper config={config} />;
+  return <FormBuilder form={config?.form} template={config?.template} />;
 };
 
-describe("renders Input", () => {
+describe("Input", () => {
   test("renders Input Component", () => {
     render(<ContextInputComponent config={inputConfig} />);
-    expect(screen.getByText("input-label")).toBeInTheDocument();
+    expect(screen.getByTestId("input")).toBeInTheDocument();
   });
 });
