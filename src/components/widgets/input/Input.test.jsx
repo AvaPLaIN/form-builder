@@ -31,4 +31,23 @@ describe("Input", () => {
     render(<ContextInputComponent config={inputConfig} />);
     expect(screen.getByTestId("input")).toBeInTheDocument();
   });
+
+  test("renders Input Label", () => {
+    render(<ContextInputComponent config={inputConfig} />);
+    expect(screen.getByText("input-label")).toBeInTheDocument();
+  });
+
+  test("renders Input Value", () => {
+    render(<ContextInputComponent config={inputConfig} />);
+    expect(screen.getByRole("textbox")).toHaveValue("input-value");
+  });
+
+  // test("renders Input Error", () => {
+  //   render(<ContextInputComponent config={inputConfig} />);
+
+  //   //click on submit button
+  //   const submitButton = screen.getByRole("button", { name: "Submit" });
+  //   userEvent.click(submitButton);
+  //   expect(screen.getByText("Input is required")).toBeInTheDocument();
+  // });
 });
