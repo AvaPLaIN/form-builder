@@ -1,18 +1,10 @@
 import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import FormStateContext from "../context/formState";
+import FormBuilder from "../components/modules/form-builder/FormBuilder";
 
-// TODO - implement real FormBuilder Context with functions
-const handleUpdateControl = jest.fn();
+const FormbuilderWrapper = ({ config }) => {
+  const { form, template } = config;
 
-const ContextWrapper = ({ children }) => {
-  const methods = useForm();
-
-  return (
-    <FormStateContext.Provider value={{ handleUpdateControl }}>
-      <FormProvider {...methods}>{children}</FormProvider>
-    </FormStateContext.Provider>
-  );
+  return <FormBuilder form={form} template={template} />;
 };
 
-export default ContextWrapper;
+export default FormbuilderWrapper;

@@ -1,34 +1,33 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import ContextWrapper from "../../../tests/context";
-import Input from "./Input";
+import FormbuilderWrapper from "../../../tests/context";
 
 const inputConfig = {
-  id: "input-id",
-  label: "input-label",
-  type: "text",
-  value: "input-value",
-  rules: {
-    required: {
-      value: true,
-      message: "Gender is required",
+  form: {
+    inputId: {
+      uuid: "619ahcu8-hz6d-9h1t-a681-ad93b9426b42",
+      id: "inputId",
+      label: "input-label",
+      control: "input",
+      type: "text",
+      value: "input-value",
+      rules: {
+        required: {
+          value: true,
+          message: "Input is required",
+        },
+      },
     },
   },
-  savePathId: "input-save-path-id",
-  objectPathId: "input-object-path-id",
 };
 
-const ContextComponent = ({ config }) => {
-  return (
-    <ContextWrapper>
-      <Input {...config} />
-    </ContextWrapper>
-  );
+const ContextInputComponent = ({ config }) => {
+  return <FormbuilderWrapper config={config} />;
 };
 
 describe("renders Input", () => {
   test("renders Input Component", () => {
-    render(<ContextComponent config={inputConfig} />);
+    render(<ContextInputComponent config={inputConfig} />);
     expect(screen.getByText("input-label")).toBeInTheDocument();
   });
 });
