@@ -157,9 +157,6 @@ const FormBuilder = ({ form, template }) => {
               <Controller key={item.uuid} item={item} />
             ))}
             <button type="submit">Submit</button>
-            {/* <button type="button" onClick={handleClearForm}>
-              Clear
-            </button> */}
           </form>
         </FormBuilderContainer>
         <StateContainer>
