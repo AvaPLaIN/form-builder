@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Group from "../group";
-import Input from '../input';
+import Input from "../input";
 import List from "../list";
 import Select from "../select";
 
