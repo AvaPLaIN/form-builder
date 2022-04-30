@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SelectContainer = styled.div`
+const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 2rem;
@@ -16,3 +16,5 @@ export const SelectContainer = styled.div`
     background-color: black;
   }
 `;
+
+export default SelectContainer;

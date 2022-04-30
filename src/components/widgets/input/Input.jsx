@@ -2,9 +2,9 @@ import get from "lodash/get";
 import { memo, useContext, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import FormStateContext from "../../../context/formState";
-import { InputContainer } from "./Input.styles";
+import InputContainer from "./Input.styles";
 
-const Input = ({ ...item }) => {
+function Input({ ...item }) {
   //* destructuring props
   const { rules, value, savePathId, objectPathId, id, type } = item;
 
@@ -59,6 +59,6 @@ const Input = ({ ...item }) => {
       {errorMessage && <div className="error input-error">{errorMessage}</div>}
     </InputContainer>
   );
-};
+}
 
 export default memo(Input);

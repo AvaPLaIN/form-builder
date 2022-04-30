@@ -1,7 +1,7 @@
 import { memo, useContext, useState } from "react";
 import FormStateContext from "../../../context/formState";
 import ListSection from "./components/list-section";
-import { ListContainer } from "./List.styles";
+import ListContainer from "./List.styles";
 
 const List = ({ items, ...list }) => {
   const { creatable, label, id, visible, swapable } = list;
@@ -14,12 +14,13 @@ const List = ({ items, ...list }) => {
   return (
     <ListContainer isListOpen={isListOpen} className="list-container">
       <div className="list-controls">
-        <p
+        <button
+          type="button"
           className="list-label"
           onClick={() => setIsListOpen((prev) => !prev)}
         >
           {label}
-        </p>
+        </button>
         {creatable && (
           <button
             className="add-list-section-button"
@@ -46,7 +47,7 @@ const List = ({ items, ...list }) => {
               pathIdInfo={{
                 savePathId: currSavePathId,
                 objectPathId: currObjectPathId,
-                index: index,
+                index,
               }}
             />
           );

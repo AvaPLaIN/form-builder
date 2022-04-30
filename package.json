@@ -3,13 +3,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose --coverage",
-    "eject": "react-scripts eject"
+    "test:noWatch": "react-scripts test --verbose --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx, ./src",
+    "lint:fix": "eslint --ext .js,.jsx,.json ./src --fix",
+    "prepare": "husky install"
   },
   "name": "form-builder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.30.0",
@@ -17,16 +22,26 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^14.1.1",
     "babel-jest": "^28.0.3",
-    "jest": "^28.0.3"
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "jest": "^28.0.3",
+    "prettier": "^2.6.2",
+    "husky": "^7.0.0"
   },
   "eslintConfig": {
     "extends": [

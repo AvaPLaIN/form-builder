@@ -138,9 +138,9 @@ const FormBuilder = ({ form, template }) => {
 
   return (
     <FormStateContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         handleUpdateControl,
-        // handleClearForm,
         handleAddListSectionToList,
         handleDeleteListSectionFromList,
         handleMoveListSectionDown,

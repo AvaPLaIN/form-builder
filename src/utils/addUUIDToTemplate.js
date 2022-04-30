@@ -7,6 +7,7 @@ const addUUIDToTemplate = (template) => {
   const loopOverObject = (object) => {
     Object.values(object).forEach((item) => {
       if (!item?.uuid) {
+        // eslint-disable-next-line no-param-reassign
         item.uuid = uuidv4();
       }
       if (item?.items && Array.isArray(item?.items) && item?.items) {

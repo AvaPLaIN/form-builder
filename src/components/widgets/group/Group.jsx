@@ -1,6 +1,5 @@
-import React from "react";
-import Controller from "../controller/Controller";
-import { GroupContainer } from "./Group.styles";
+import Controller from "../controller";
+import GroupContainer from "./Group.styles";
 
 const Group = ({ ...item }) => {
   const { label, items, id } = item;

@@ -2,7 +2,7 @@ import get from "lodash/get";
 import { memo, useContext, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import FormStateContext from "../../../context/formState";
-import { SelectContainer } from "./Select.styles";
+import SelectContainer from "./Select.styles";
 
 const Select = ({ ...item }) => {
   //* destructuring props

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ListContainer = styled.div`
+const ListContainer = styled.div`
   margin-left: 2rem;
   background-color: rgba(0, 0, 0, 0.1);
   position: relative;
@@ -32,3 +32,5 @@ export const ListContainer = styled.div`
     gap: 1rem;
   }
 `;
+
+export default ListContainer;

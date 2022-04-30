@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const GroupContainer = styled.div`
+const GroupContainer = styled.div`
   margin: 1rem 0 1rem 2rem;
   position: relative;
   /* border: 1px solid red; */
@@ -31,3 +31,5 @@ export const GroupContainer = styled.div`
     background-color: black;
   }
 `;
+
+export default GroupContainer;

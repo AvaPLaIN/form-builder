@@ -1,4 +1,3 @@
-import React from "react";
 import FormBuilder from "./components/modules/form-builder/FormBuilder";
 import formConfig from "./data/form-config";
 
