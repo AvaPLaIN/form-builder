@@ -1,5 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import FormBuilder from "../../modules/form-builder/FormBuilder";
+import userEvent from "@testing-library/user-event";
+import { useMemo } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import FormStateContext from "../../../context/formState";
+import Input from "./Input";
 
 //* input Configuration
 const inputConfig = {
@@ -21,34 +25,112 @@ const inputConfig = {
   },
 };
 
-const ContextInputComponent = ({ config }) => {
-  return <FormBuilder form={config?.form} template={config?.template} />;
+const handleUpdateControl = jest.fn();
+const onSubmit = jest.fn();
+
+const ContextInputComponent = () => {
+  const methods = useForm();
+
+  const FormStateContextValue = useMemo(
+    () => ({
+      handleUpdateControl,
+    }),
+    []
+  );
+
+  return (
+    <FormStateContext.Provider value={FormStateContextValue}>
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className="formbuilder"
+          data-testid="form"
+        >
+          <Input {...inputConfig.form.inputId} />
+          <button type="submit">Submit</button>
+        </form>
+      </FormProvider>
+    </FormStateContext.Provider>
+  );
 };
+
+describe("Input Context Mock", () => {
+  test("renders form", () => {
+    render(<ContextInputComponent />);
+
+    expect(screen.getByTestId("form")).toBeInTheDocument();
+  });
+
+  test("renders submit button", () => {
+    render(<ContextInputComponent />);
+
+    expect(screen.getByRole("button")).toHaveTextContent("Submit");
+  });
+
+  test("submit form", async () => {
+    render(<ContextInputComponent />);
+
+    const submitButton = screen.getByRole("button");
+
+    await userEvent.click(submitButton);
+
+    expect(onSubmit).toHaveBeenCalledTimes(1);
+  });
+});
 
 describe("Input", () => {
   test("renders Input Component", () => {
-    render(<ContextInputComponent config={inputConfig} />);
+    render(<ContextInputComponent />);
+
     expect(screen.getByTestId("input")).toBeInTheDocument();
   });
 
   test("renders Input Label", () => {
-    render(<ContextInputComponent config={inputConfig} />);
+    render(<ContextInputComponent />);
+
     expect(screen.getByText("input-label")).toBeInTheDocument();
   });
 
   test("renders Input Value", () => {
-    render(<ContextInputComponent config={inputConfig} />);
+    render(<ContextInputComponent />);
+
     expect(screen.getByRole("textbox")).toHaveValue("input-value");
   });
 
-  // TODO - render Input directly, not over FormBuilder
+  test("clear input value", async () => {
+    render(<ContextInputComponent />);
 
-  // test("renders Input Error", () => {
-  //   render(<ContextInputComponent config={inputConfig} />);
+    const input = screen.getByRole("textbox");
 
-  //   //click on submit button
-  //   const submitButton = screen.getByRole("button", { name: "Submit" });
-  //   userEvent.click(submitButton);
-  //   expect(screen.getByText("Input is required")).toBeInTheDocument();
-  // });
+    await userEvent.clear(input);
+
+    expect(input).toHaveValue("");
+    expect(handleUpdateControl).toHaveBeenCalledTimes(1);
+  });
+
+  test("change input value", async () => {
+    render(<ContextInputComponent />);
+
+    const input = screen.getByRole("textbox");
+
+    await userEvent.clear(input);
+    await userEvent.type(input, "new-value");
+
+    expect(input).toHaveValue("new-value");
+    expect(handleUpdateControl).toHaveBeenCalledTimes(10);
+  });
+
+  test("should display error message when submitting empty input with required rule", async () => {
+    render(<ContextInputComponent />);
+
+    const input = screen.getByRole("textbox");
+    const submitButton = screen.getByRole("button");
+
+    await userEvent.clear(input);
+    await userEvent.click(submitButton);
+
+    expect(input).toHaveValue("");
+    expect(onSubmit).toHaveBeenCalledTimes(0);
+    // TODO - check for error message on input (bug)
+  });
 });
