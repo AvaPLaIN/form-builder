@@ -3,7 +3,7 @@ import compact from "lodash/compact";
 import get from "lodash/get";
 import set from "lodash/set";
 import unset from "lodash/unset";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import FormStateContext from "../../../context/formState";
 import addUUIDToTemplate from "../../../utils/addUUIDToTemplate";
@@ -18,135 +18,155 @@ const FormBuilder = ({ form, template }) => {
 
   const onSubmit = (data) => setData(data);
 
-  const handleUpdateControl = (currObjectPathId, value) => {
-    const newItems = cloneDeep(items);
+  const handleUpdateControl = useCallback(
+    (currObjectPathId, value) => {
+      const newItems = cloneDeep(items);
 
-    //* get the control object
-    const currControlObject = get(newItems, currObjectPathId);
+      //* get the control object
+      const currControlObject = get(newItems, currObjectPathId);
 
-    //* update items with new value
-    set(newItems, currObjectPathId, { ...currControlObject, value });
+      //* update items with new value
+      set(newItems, currObjectPathId, { ...currControlObject, value });
 
-    //* set the new form state
-    setItems(newItems);
-  };
+      //* set the new form state
+      setItems(newItems);
+    },
+    [items]
+  );
 
-  const handleAddListSectionToList = (currObjectPathId) => {
-    const currForm = cloneDeep(items);
-    const controlTemplatePathId = `${currObjectPathId.replace(
-      /\d+/g,
-      "0"
-    )}.items.0`;
+  const handleAddListSectionToList = useCallback(
+    (currObjectPathId) => {
+      const currForm = cloneDeep(items);
+      const controlTemplatePathId = `${currObjectPathId.replace(
+        /\d+/g,
+        "0"
+      )}.items.0`;
 
-    //* get the current template object
-    const currTemplate = cloneDeep(get(template, controlTemplatePathId));
+      //* get the current template object
+      const currTemplate = cloneDeep(get(template, controlTemplatePathId));
 
-    //* add uuid key to current template object controls
-    const clonedCurrTemplate = addUUIDToTemplate(currTemplate);
+      //* add uuid key to current template object controls
+      const clonedCurrTemplate = addUUIDToTemplate(currTemplate);
 
-    //* get the current list section from form
-    const currentListSection = get(currForm, `${currObjectPathId}.items`);
+      //* get the current list section from form
+      const currentListSection = get(currForm, `${currObjectPathId}.items`);
 
-    //* add template to the list section
-    currentListSection.push(clonedCurrTemplate);
+      //* add template to the list section
+      currentListSection.push(clonedCurrTemplate);
 
-    //* merge the new list section to the form
-    const enhancedListSection = set(
-      currForm,
-      `${currObjectPathId}.items`,
-      currentListSection
-    );
+      //* merge the new list section to the form
+      const enhancedListSection = set(
+        currForm,
+        `${currObjectPathId}.items`,
+        currentListSection
+      );
 
-    //* set the new form state
-    setItems(enhancedListSection);
-  };
+      //* set the new form state
+      setItems(enhancedListSection);
+    },
+    [items, template]
+  );
 
-  const handleDeleteListSectionFromList = (
-    currObjectPathId,
-    currListSectionPathId
-  ) => {
-    const currForm = cloneDeep(items);
-    const listSectionItemsPathId = `${currListSectionPathId}.items`;
+  const handleDeleteListSectionFromList = useCallback(
+    (currObjectPathId, currListSectionPathId) => {
+      const currForm = cloneDeep(items);
+      const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
-    //* unset object with path from form
-    unset(currForm, currObjectPathId);
+      //* unset object with path from form
+      unset(currForm, currObjectPathId);
 
-    //* get compact object of form
-    const enhancedCurrForm = set(
-      currForm,
-      listSectionItemsPathId,
-      compact(get(currForm, listSectionItemsPathId))
-    );
+      //* get compact object of form
+      const enhancedCurrForm = set(
+        currForm,
+        listSectionItemsPathId,
+        compact(get(currForm, listSectionItemsPathId))
+      );
 
-    //* set the new form state
-    setItems(enhancedCurrForm);
-  };
+      //* set the new form state
+      setItems(enhancedCurrForm);
+    },
+    [items]
+  );
 
-  const handleMoveListSectionDown = (currListSectionPathId, index) => {
-    const newItems = cloneDeep(items);
-    const listSectionItemsPathId = `${currListSectionPathId}.items`;
+  const handleMoveListSectionDown = useCallback(
+    (currListSectionPathId, index) => {
+      const newItems = cloneDeep(items);
+      const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
-    const currListObject = get(newItems, listSectionItemsPathId);
-    const currListObjectLength = currListObject.length;
+      const currListObject = get(newItems, listSectionItemsPathId);
+      const currListObjectLength = currListObject.length;
 
-    //* return if list section is already last section
-    if (currListObjectLength === index + 1) return;
+      //* return if list section is already last section
+      if (currListObjectLength === index + 1) return;
 
-    //* swap the two list sections
-    const temp = currListObject[index];
-    currListObject[index] = currListObject[index + 1];
-    currListObject[index + 1] = temp;
+      //* swap the two list sections
+      const temp = currListObject[index];
+      currListObject[index] = currListObject[index + 1];
+      currListObject[index + 1] = temp;
 
-    //* merge the new list section to the form
-    const enhancedListSection = set(
-      newItems,
-      listSectionItemsPathId,
-      currListObject
-    );
+      //* merge the new list section to the form
+      const enhancedListSection = set(
+        newItems,
+        listSectionItemsPathId,
+        currListObject
+      );
 
-    //* set the new form state
-    setItems(enhancedListSection);
-  };
+      //* set the new form state
+      setItems(enhancedListSection);
+    },
+    [items]
+  );
 
-  const handleMoveListSectionUp = (currListSectionPathId, index) => {
-    const newItems = cloneDeep(items);
+  const handleMoveListSectionUp = useCallback(
+    (currListSectionPathId, index) => {
+      const newItems = cloneDeep(items);
 
-    //* return if list section is already last section
-    if (index === 0) return;
+      //* return if list section is already last section
+      if (index === 0) return;
 
-    //* convert pathId to valid path for Objects
-    const listSectionItemsPathId = `${currListSectionPathId}.items`;
+      //* convert pathId to valid path for Objects
+      const listSectionItemsPathId = `${currListSectionPathId}.items`;
 
-    //* get current list
-    const currListObject = get(newItems, listSectionItemsPathId);
+      //* get current list
+      const currListObject = get(newItems, listSectionItemsPathId);
 
-    //* swap the two list sections
-    const temp = currListObject[index];
-    currListObject[index] = currListObject[index - 1];
-    currListObject[index - 1] = temp;
+      //* swap the two list sections
+      const temp = currListObject[index];
+      currListObject[index] = currListObject[index - 1];
+      currListObject[index - 1] = temp;
 
-    //* merge the new list section to the form
-    const enhancedListSection = set(
-      newItems,
-      listSectionItemsPathId,
-      currListObject
-    );
+      //* merge the new list section to the form
+      const enhancedListSection = set(
+        newItems,
+        listSectionItemsPathId,
+        currListObject
+      );
 
-    //* set the new form state
-    setItems(enhancedListSection);
-  };
+      //* set the new form state
+      setItems(enhancedListSection);
+    },
+    [items]
+  );
+
+  const FormStateContextValue = useMemo(
+    () => ({
+      handleUpdateControl,
+      handleAddListSectionToList,
+      handleDeleteListSectionFromList,
+      handleMoveListSectionDown,
+      handleMoveListSectionUp,
+    }),
+    [
+      handleUpdateControl,
+      handleAddListSectionToList,
+      handleDeleteListSectionFromList,
+      handleMoveListSectionDown,
+      handleMoveListSectionUp,
+    ]
+  );
 
   return (
-    <FormStateContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{
-        handleUpdateControl,
-        handleAddListSectionToList,
-        handleDeleteListSectionFromList,
-        handleMoveListSectionDown,
-        handleMoveListSectionUp,
-      }}
-    >
+    <FormStateContext.Provider value={FormStateContextValue}>
       <FormProvider {...methods}>
         <FormBuilderContainer>
           <form
