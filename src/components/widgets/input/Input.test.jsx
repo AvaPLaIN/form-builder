@@ -133,4 +133,22 @@ describe("Input", () => {
     expect(onSubmit).toHaveBeenCalledTimes(0);
     // TODO - check for error message on input (bug)
   });
+
+  test("change input with correct pathId", async () => {
+    render(<ContextInputComponent />);
+
+    const input = screen.getByRole("textbox");
+
+    await userEvent.clear(input);
+
+    expect(handleUpdateControl).toHaveBeenCalledWith("inputId", "");
+  });
+
+  test("should have savePathId as id", () => {
+    render(<ContextInputComponent />);
+
+    const input = screen.getByRole("textbox");
+
+    expect(input.getAttribute("id")).toBe("inputId");
+  });
 });
