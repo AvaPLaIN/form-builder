@@ -7,12 +7,18 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx, ./src",
     "lint:fix": "eslint --ext .js,.jsx,.json ./src --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "name": "form-builder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "@storybook/testing-library": "^0.0.11",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
@@ -22,14 +28,20 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^14.1.1"
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
+    "@storybook/node-logger": "^6.4.22",
+    "@storybook/preset-create-react-app": "^4.1.0",
+    "@storybook/react": "^6.4.22",
     "babel-jest": "^28.0.3",
     "eslint": "^8.14.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -39,14 +51,26 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-storybook": "^0.5.11",
+    "husky": "^7.0.0",
     "jest": "^28.0.3",
     "prettier": "^2.6.2",
-    "husky": "^7.0.0"
+    "webpack": "^5.72.0"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
