@@ -1,31 +1,28 @@
 import { action } from "@storybook/addon-actions";
-import { useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import FormStateContext from "../../src/context/formState";
 
-const FormBuilderDecorator = (Story, context) => {
+const FormBuilderDecorator = (Story) => {
   const methods = useForm();
 
   const handleUpdateControl = (path, value) => {
-    action("handleUpdateControl")(path, value);
+    action("Update Control")(path, value);
   };
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    action("onSubmit")(e);
+    const formValues = methods.getValues();
+    action("Submit Form")(formValues);
   };
-
-  const FormStateContextValue = useMemo(
-    () => ({
-      handleUpdateControl,
-    }),
-    []
-  );
 
   return (
-    <FormStateContext.Provider value={FormStateContextValue}>
+    <FormStateContext.Provider value={{ handleUpdateControl }}>
       <FormProvider {...methods}>
-        <form onSubmit={onSubmit} className="formbuilder" data-testid="form">
+        <form
+          onSubmit={handleSubmit}
+          className="formbuilder"
+          data-testid="form"
+        >
           <Story />
           <button type="submit">Submit</button>
         </form>
