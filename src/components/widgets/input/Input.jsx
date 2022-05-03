@@ -55,6 +55,7 @@ function Input({ ...item }) {
         onChange={handleOnChange}
         {...registerProps}
         id={currSavePathId}
+        placeholder={item.label}
       />
       {errorMessage && <div className="error input-error">{errorMessage}</div>}
     </InputContainer>

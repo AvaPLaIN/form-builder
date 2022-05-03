@@ -1,4 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const gridLayout = css`
+  display: grid;
+`;
+
+const flexLayout = css`
+  display: flex;
+`;
+
+const handleLayout = ({ layout }) => {
+  switch (layout?.display) {
+    case "grid":
+      return gridLayout;
+    case "flex":
+      return flexLayout;
+    default:
+      return null;
+  }
+};
 
 const GroupContainer = styled.div`
   margin: 1rem 0 1rem 2rem;
@@ -9,6 +28,10 @@ const GroupContainer = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
     padding: 0.5rem;
+  }
+
+  .group-items {
+    ${handleLayout};
   }
 
   &::before {

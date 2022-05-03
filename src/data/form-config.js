@@ -11,6 +11,10 @@ const formConfig = {
           id: "info",
           label: "Info",
           control: "group",
+          layout: {
+            display: "grid",
+            columns: "4",
+          },
           items: {
             firstName: {
               uuid: "619ahcu8-hz6d-9h1t-a681-ad93b9426b42",
@@ -19,6 +23,12 @@ const formConfig = {
               control: "input",
               type: "text",
               value: "test",
+              layout: {
+                columnStart: "1",
+                columnEnd: "1",
+                rowStart: "1",
+                rowEnd: "1",
+              },
             },
             lastName: {
               uuid: "679bczu1-hz6d-9h1f-a647-ht93b9426b42",

@@ -5,6 +5,7 @@ const InputContainer = styled.div`
   align-items: center;
   margin-left: 2rem;
   position: relative;
+  /* border: 1px solid blue; */
 
   &::before {
     content: "";
