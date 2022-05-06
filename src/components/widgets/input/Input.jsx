@@ -6,7 +6,7 @@ import InputContainer from "./Input.styles";
 
 function Input({ ...item }) {
   //* destructuring props
-  const { rules, value, savePathId, objectPathId, id, type } = item;
+  const { rules, value, savePathId, objectPathId, id, type, layout } = item;
 
   const { handleUpdateControl } = useContext(FormStateContext);
 
@@ -45,6 +45,7 @@ function Input({ ...item }) {
     <InputContainer
       className="control-container input-container"
       data-testid="input"
+      layout={layout}
     >
       <label className="label input-label" htmlFor={currSavePathId}>
         {item.label}

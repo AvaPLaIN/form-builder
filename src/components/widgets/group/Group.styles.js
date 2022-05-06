@@ -2,6 +2,9 @@ import styled, { css } from "styled-components";
 
 const gridLayout = css`
   display: grid;
+  grid-template-columns: repeat(${({ layout }) => layout.columns}, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
 `;
 
 const flexLayout = css`

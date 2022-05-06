@@ -23,9 +23,16 @@ const formConfig = {
               control: "input",
               type: "text",
               value: "test",
+              rules: {
+                required: {
+                  value: true,
+                  message: "First Name is required",
+                },
+              },
               layout: {
+                display: "grid",
                 columnStart: "1",
-                columnEnd: "1",
+                columnEnd: "3",
                 rowStart: "1",
                 rowEnd: "1",
               },
@@ -36,6 +43,13 @@ const formConfig = {
               label: "Last Name",
               control: "input",
               type: "text",
+              layout: {
+                display: "grid",
+                columnStart: "3",
+                columnEnd: "5",
+                rowStart: "1",
+                rowEnd: "1",
+              },
             },
             gender: {
               uuid: "374baaf3-db1b-3d5t-u787-ed93e9306b67",
