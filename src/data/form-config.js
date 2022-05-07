@@ -1,219 +1,454 @@
 const formConfig = {
   form: {
-    person: {
-      uuid: "679bafk8-hj1d-4h7f-a684-ad93b9426b42",
-      id: "person",
-      label: "Person",
+    address: {
+      id: "address",
       control: "group",
+      label: "Address",
+      uuid: "5cb9e464-0458-481a-b66a-f78b420ccb85",
       items: {
-        info: {
-          uuid: "679bctu3-hz6d-9h1f-a684-ad93b9426b42",
-          id: "info",
-          label: "Info",
+        main: {
+          id: "main",
           control: "group",
+          label: "Main",
           layout: {
             display: "grid",
             columns: "4",
           },
+          uuid: "d322284a-8eb0-4689-b9c6-b4ef1dc2e5e2",
           items: {
-            firstName: {
-              uuid: "619ahcu8-hz6d-9h1t-a681-ad93b9426b42",
-              id: "firstName",
-              label: "First Name",
+            street: {
+              id: "street",
               control: "input",
               type: "text",
-              value: "test",
+              value: "",
+              placeholder: "Street...",
+              label: {
+                text: "Street",
+                visible: true,
+              },
               rules: {
                 required: {
                   value: true,
-                  message: "First Name is required",
+                  message: "Street is required",
                 },
               },
               layout: {
                 display: "grid",
                 columnStart: "1",
-                columnEnd: "3",
+                columnEnd: "4",
                 rowStart: "1",
-                rowEnd: "1",
+                rowEnd: "2",
               },
+              uuid: "c18c701d-2c4b-4e78-8099-25ae995ef7c3",
             },
-            lastName: {
-              uuid: "679bczu1-hz6d-9h1f-a647-ht93b9426b42",
-              id: "lastName",
-              label: "Last Name",
+            number: {
+              id: "number",
               control: "input",
-              type: "text",
+              type: "number",
+              value: "",
+              placeholder: "Number...",
+              label: {
+                text: "Number",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "Number is required",
+                },
+              },
               layout: {
                 display: "grid",
-                columnStart: "3",
+                columnStart: "4",
                 columnEnd: "5",
                 rowStart: "1",
-                rowEnd: "1",
+                rowEnd: "2",
               },
+              uuid: "a213c49f-0566-4371-b1cc-d6e7e73257d9",
             },
-            gender: {
-              uuid: "374baaf3-db1b-3d5t-u787-ed93e9306b67",
-              id: "gender",
-              label: "Gender",
-              control: "select",
-              options: [
-                {
-                  value: "male",
-                  label: "Male",
+            postalCode: {
+              id: "plz",
+              control: "input",
+              type: "number",
+              value: "",
+              placeholder: "postal code...",
+              label: {
+                text: "Postal code",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "Postal code is required",
                 },
-                {
-                  value: "female",
-                  label: "Female",
+              },
+              layout: {
+                display: "grid",
+                columnStart: "1",
+                columnEnd: "2",
+                rowStart: "2",
+                rowEnd: "3",
+              },
+              uuid: "e51d4109-d370-480e-8ee8-437ad68267fa",
+            },
+            city: {
+              id: "city",
+              control: "input",
+              type: "text",
+              value: "",
+              placeholder: "city...",
+              label: {
+                text: "City",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "City is required",
                 },
-              ],
+              },
+              layout: {
+                display: "grid",
+                columnStart: "2",
+                columnEnd: "5",
+                rowStart: "2",
+                rowEnd: "3",
+              },
+              uuid: "8837f34e-8ca9-4e80-8a62-6c7fefea61a7",
+            },
+            country: {
+              id: "country",
+              control: "input",
+              type: "text",
+              value: "",
+              placeholder: "country...",
+              label: {
+                text: "Country",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "Country is required",
+                },
+              },
+              layout: {
+                display: "grid",
+                columnStart: "1",
+                columnEnd: "5",
+                rowStart: "3",
+                rowEnd: "4",
+              },
+              uuid: "c8172e20-e3f3-495c-bdd5-ad96f336f943",
             },
           },
         },
-        address: {
-          uuid: "f8f4f8g6-a2h7-w8jv-w1k9-f8f8f8f8f8f8",
-          id: "address",
-          label: "Adresse",
-          control: "group",
-          items: {
-            main: {
-              uuid: "f8f4f8g6-a2h7-w8jv-w1k9-f8t4z9q2b5n1",
-              id: "main",
-              label: "Main Address",
-              control: "group",
-              items: {
-                street: {
-                  uuid: "f2z8u1g6-a2h7-w8jv-w1k9-p8o8i8u8t8r8",
-                  id: "street",
-                  label: "Street",
-                  control: "input",
-                  type: "text",
-                },
-                city: {
-                  uuid: "f2z8u1t1-b1u3-j8jw-r1k1-p8o8i8u8t8r8",
-                  id: "city",
-                  label: "City",
-                  control: "input",
-                  type: "text",
-                },
-              },
-            },
-            sub: {
-              uuid: "f1z4i8c8-a1y7-w8jv-w1k9-t8t4z9q2b5n2",
-              id: "sub",
-              label: "Sub Address",
-              control: "list",
-              creatable: true,
-              swapable: true,
-              visible: true,
-              items: [],
-            },
+        sub: {
+          id: "sub",
+          control: "list",
+          label: {
+            text: "Sub Address",
+            visible: true,
           },
+          creatable: true,
+          swapable: true,
+          visible: true,
+          uuid: "e217fd62-3891-4aa0-a831-2e3adf2d4ca5",
+          items: [],
         },
       },
     },
   },
   template: {
-    person: {
-      id: "person",
-      label: "Person",
+    address: {
+      id: "address",
       control: "group",
+      label: "Address",
+      uuid: "5cb9e464-0458-481a-b66a-f78b420ccb85",
       items: {
-        info: {
-          id: "info",
-          label: "Info",
+        main: {
+          id: "main",
           control: "group",
+          label: "Main",
+          layout: {
+            display: "grid",
+            columns: "4",
+          },
+          uuid: "d322284a-8eb0-4689-b9c6-b4ef1dc2e5e2",
           items: {
-            firstName: {
-              id: "firstName",
-              label: "First Name",
+            street: {
+              id: "street",
               control: "input",
               type: "text",
-            },
-            lastName: {
-              id: "lastName",
-              label: "Last Name",
-              control: "input",
-              type: "text",
-            },
-            gender: {
-              id: "gender",
-              label: "Gender",
-              control: "select",
-              options: [
-                {
-                  value: "male",
-                  label: "Male",
-                },
-                {
-                  value: "female",
-                  label: "Female",
-                },
-              ],
+              value: "",
+              placeholder: "Street...",
+              label: {
+                text: "Street",
+                visible: true,
+              },
               rules: {
                 required: {
                   value: true,
-                  message: "Gender is required",
+                  message: "Street is required",
                 },
               },
+              layout: {
+                display: "grid",
+                columnStart: "1",
+                columnEnd: "4",
+                rowStart: "1",
+                rowEnd: "2",
+              },
+              uuid: "c18c701d-2c4b-4e78-8099-25ae995ef7c3",
+            },
+            number: {
+              id: "number",
+              control: "input",
+              type: "number",
+              value: "",
+              placeholder: "Number...",
+              label: {
+                text: "Number",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "Number is required",
+                },
+              },
+              layout: {
+                display: "grid",
+                columnStart: "4",
+                columnEnd: "5",
+                rowStart: "1",
+                rowEnd: "2",
+              },
+              uuid: "a213c49f-0566-4371-b1cc-d6e7e73257d9",
+            },
+            postalCode: {
+              id: "plz",
+              control: "input",
+              type: "number",
+              value: "",
+              placeholder: "postal code...",
+              label: {
+                text: "Postal code",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "Postal code is required",
+                },
+              },
+              layout: {
+                display: "grid",
+                columnStart: "1",
+                columnEnd: "2",
+                rowStart: "2",
+                rowEnd: "3",
+              },
+              uuid: "e51d4109-d370-480e-8ee8-437ad68267fa",
+            },
+            city: {
+              id: "city",
+              control: "input",
+              type: "text",
+              value: "",
+              placeholder: "city...",
+              label: {
+                text: "City",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "City is required",
+                },
+              },
+              layout: {
+                display: "grid",
+                columnStart: "2",
+                columnEnd: "5",
+                rowStart: "2",
+                rowEnd: "3",
+              },
+              uuid: "8837f34e-8ca9-4e80-8a62-6c7fefea61a7",
+            },
+            country: {
+              id: "country",
+              control: "input",
+              type: "text",
+              value: "",
+              placeholder: "country...",
+              label: {
+                text: "Country",
+                visible: true,
+              },
+              rules: {
+                required: {
+                  value: true,
+                  message: "Country is required",
+                },
+              },
+              layout: {
+                display: "grid",
+                columnStart: "1",
+                columnEnd: "5",
+                rowStart: "3",
+                rowEnd: "4",
+              },
+              uuid: "c8172e20-e3f3-495c-bdd5-ad96f336f943",
             },
           },
         },
-        address: {
-          id: "address",
-          label: "Adresse",
-          control: "group",
-          items: {
-            main: {
-              id: "main",
-              label: "Main Address",
-              control: "group",
-              items: {
-                street: {
-                  id: "street",
-                  label: "Street",
-                  control: "input",
-                  type: "text",
+        sub: {
+          id: "sub",
+          control: "list",
+          label: {
+            text: "Sub Address",
+            visible: true,
+          },
+          creatable: true,
+          swapable: true,
+          visible: true,
+          uuid: "e217fd62-3891-4aa0-a831-2e3adf2d4ca5",
+          items: [
+            {
+              sub: {
+                id: "sub",
+                control: "group",
+                label: "Sub",
+                layout: {
+                  display: "grid",
+                  columns: "4",
                 },
-                city: {
-                  id: "city",
-                  label: "City",
-                  control: "input",
-                  type: "text",
-                },
-              },
-            },
-            sub: {
-              id: "sub",
-              label: "Sub Address",
-              control: "list",
-              creatable: true,
-              swapable: true,
-              visible: true,
-              items: [
-                {
-                  address: {
-                    id: "address",
-                    label: "Sub Adresse",
-                    control: "group",
-                    items: {
-                      street: {
-                        id: "street",
-                        label: "Street",
-                        control: "input",
-                        type: "text",
+                items: {
+                  street: {
+                    id: "street",
+                    control: "input",
+                    type: "text",
+                    value: "",
+                    placeholder: "Street...",
+                    label: {
+                      text: "Street",
+                      visible: true,
+                    },
+                    rules: {
+                      required: {
+                        value: true,
+                        message: "Street is required",
                       },
-                      city: {
-                        id: "city",
-                        label: "City",
-                        control: "input",
-                        type: "text",
+                    },
+                    layout: {
+                      display: "grid",
+                      columnStart: "1",
+                      columnEnd: "4",
+                      rowStart: "1",
+                      rowEnd: "2",
+                    },
+                  },
+                  number: {
+                    id: "number",
+                    control: "input",
+                    type: "number",
+                    value: "",
+                    placeholder: "Number...",
+                    label: {
+                      text: "Number",
+                      visible: true,
+                    },
+                    rules: {
+                      required: {
+                        value: true,
+                        message: "Number is required",
                       },
+                    },
+                    layout: {
+                      display: "grid",
+                      columnStart: "4",
+                      columnEnd: "5",
+                      rowStart: "1",
+                      rowEnd: "2",
+                    },
+                  },
+                  postalCode: {
+                    id: "plz",
+                    control: "input",
+                    type: "number",
+                    value: "",
+                    placeholder: "postal code...",
+                    label: {
+                      text: "Postal code",
+                      visible: true,
+                    },
+                    rules: {
+                      required: {
+                        value: true,
+                        message: "Postal code is required",
+                      },
+                    },
+                    layout: {
+                      display: "grid",
+                      columnStart: "1",
+                      columnEnd: "2",
+                      rowStart: "2",
+                      rowEnd: "3",
+                    },
+                  },
+                  city: {
+                    id: "city",
+                    control: "input",
+                    type: "text",
+                    value: "",
+                    placeholder: "city...",
+                    label: {
+                      text: "City",
+                      visible: true,
+                    },
+                    rules: {
+                      required: {
+                        value: true,
+                        message: "City is required",
+                      },
+                    },
+                    layout: {
+                      display: "grid",
+                      columnStart: "2",
+                      columnEnd: "5",
+                      rowStart: "2",
+                      rowEnd: "3",
+                    },
+                  },
+                  country: {
+                    id: "country",
+                    control: "input",
+                    type: "text",
+                    value: "",
+                    placeholder: "country...",
+                    label: {
+                      text: "Country",
+                      visible: true,
+                    },
+                    rules: {
+                      required: {
+                        value: true,
+                        message: "Country is required",
+                      },
+                    },
+                    layout: {
+                      display: "grid",
+                      columnStart: "1",
+                      columnEnd: "5",
+                      rowStart: "3",
+                      rowEnd: "4",
                     },
                   },
                 },
-              ],
+              },
             },
-          },
+          ],
         },
       },
     },

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const ListContainer = styled.div`
-  margin-left: 2rem;
   background-color: rgba(0, 0, 0, 0.1);
   position: relative;
 
@@ -21,6 +20,8 @@ const ListContainer = styled.div`
 
     .list-label {
       cursor: pointer;
+      border: none;
+      background-color: transparent;
     }
   }
 

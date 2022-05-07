@@ -24,9 +24,9 @@ const handleLayout = ({ layout }) => {
 
 const InputContainer = styled.div`
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin-left: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   position: relative;
   ${handleLayout};
 
@@ -40,16 +40,6 @@ const InputContainer = styled.div`
 
   .input-error {
     white-space: nowrap;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: -33px;
-    width: 30px;
-    height: 1px;
-    background-color: black;
   }
 `;
 

@@ -6,7 +6,17 @@ import InputContainer from "./Input.styles";
 
 function Input({ ...item }) {
   //* destructuring props
-  const { rules, value, savePathId, objectPathId, id, type, layout } = item;
+  const {
+    rules,
+    value,
+    savePathId,
+    objectPathId,
+    id,
+    type,
+    layout,
+    placeholder,
+    label,
+  } = item;
 
   const { handleUpdateControl } = useContext(FormStateContext);
 
@@ -47,16 +57,18 @@ function Input({ ...item }) {
       data-testid="input"
       layout={layout}
     >
-      <label className="label input-label" htmlFor={currSavePathId}>
-        {item.label}
-      </label>
+      {label?.visible && (
+        <label className="label input-label" htmlFor={currSavePathId}>
+          {label?.text}
+        </label>
+      )}
       <input
         className="control input"
         type={type}
         onChange={handleOnChange}
         {...registerProps}
         id={currSavePathId}
-        placeholder={item.label}
+        placeholder={placeholder}
       />
       {errorMessage && <div className="error input-error">{errorMessage}</div>}
     </InputContainer>

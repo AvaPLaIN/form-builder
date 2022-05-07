@@ -4,7 +4,7 @@ const gridLayout = css`
   display: grid;
   grid-template-columns: repeat(${({ layout }) => layout.columns}, 1fr);
   grid-template-rows: auto;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const flexLayout = css`
@@ -23,9 +23,8 @@ const handleLayout = ({ layout }) => {
 };
 
 const GroupContainer = styled.div`
-  margin: 1rem 0 1rem 2rem;
+  margin: 1rem 0;
   position: relative;
-  /* border: 1px solid red; */
 
   .group-label {
     font-size: 1.5rem;
@@ -34,6 +33,7 @@ const GroupContainer = styled.div`
   }
 
   .group-items {
+    padding-left: 2rem;
     ${handleLayout};
   }
 

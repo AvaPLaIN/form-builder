@@ -14,13 +14,15 @@ const List = ({ items, ...list }) => {
   return (
     <ListContainer isListOpen={isListOpen} className="list-container">
       <div className="list-controls">
-        <button
-          type="button"
-          className="list-label"
-          onClick={() => setIsListOpen((prev) => !prev)}
-        >
-          {label}
-        </button>
+        {label?.visible && (
+          <button
+            type="button"
+            className="list-label"
+            onClick={() => setIsListOpen((prev) => !prev)}
+          >
+            {label?.text}
+          </button>
+        )}
         {creatable && (
           <button
             className="add-list-section-button"
