@@ -9,11 +9,14 @@ import Input from "./Input";
 const inputConfig = {
   form: {
     inputId: {
-      uuid: "619ahcu8-hz6d-9h1t-a681-ad93b9426b42",
       id: "inputId",
-      label: "input-label",
       control: "input",
       type: "text",
+      label: {
+        text: "input-label",
+        visible: true,
+      },
+      placeholder: "input-placeholder",
       value: "input-value",
       rules: {
         required: {
@@ -21,6 +24,7 @@ const inputConfig = {
           message: "Input is required",
         },
       },
+      uuid: "619ahcu8-hz6d-9h1t-a681-ad93b9426b42",
     },
   },
 };
@@ -89,6 +93,14 @@ describe("Input", () => {
     render(<ContextInputComponent />);
 
     expect(screen.getByText("input-label")).toBeInTheDocument();
+  });
+
+  test("renders Input Placeholder", () => {
+    render(<ContextInputComponent />);
+
+    expect(
+      screen.getByPlaceholderText("input-placeholder")
+    ).toBeInTheDocument();
   });
 
   test("renders Input Value", () => {
