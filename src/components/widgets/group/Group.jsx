@@ -9,7 +9,7 @@ const Group = ({ ...item }) => {
 
   return (
     <GroupContainer className="group-container" layout={layout}>
-      <div className="group-label">{label}</div>
+      {label?.visible && <div className="group-label">{label?.text}</div>}
       <div className="group-items">
         {Object.entries(items).map(([key, value]) => {
           const savePathId = `${currSavePathId}.${key}`;

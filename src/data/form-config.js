@@ -3,13 +3,19 @@ const formConfig = {
     address: {
       id: "address",
       control: "group",
-      label: "Address",
+      label: {
+        text: "Address",
+        visible: true,
+      },
       uuid: "5cb9e464-0458-481a-b66a-f78b420ccb85",
       items: {
         main: {
           id: "main",
           control: "group",
-          label: "Main",
+          label: {
+            text: "Main",
+            visible: true,
+          },
           layout: {
             display: "grid",
             columns: "4",
@@ -163,13 +169,19 @@ const formConfig = {
     address: {
       id: "address",
       control: "group",
-      label: "Address",
+      label: {
+        text: "Address",
+        visible: true,
+      },
       uuid: "5cb9e464-0458-481a-b66a-f78b420ccb85",
       items: {
         main: {
           id: "main",
           control: "group",
-          label: "Main",
+          label: {
+            text: "Main",
+            visible: true,
+          },
           layout: {
             display: "grid",
             columns: "4",
@@ -319,7 +331,10 @@ const formConfig = {
               sub: {
                 id: "sub",
                 control: "group",
-                label: "Sub",
+                label: {
+                  text: "Sub",
+                  visible: false,
+                },
                 layout: {
                   display: "grid",
                   columns: "4",
