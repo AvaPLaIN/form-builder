@@ -21,7 +21,7 @@ const Toggle = ({ isGroupOpen, setIsGroupOpen }) => {
 const Header = ({ label, isGroupOpen, setIsGroupOpen }) => {
   return (
     <div className="group-header">
-      {label?.visible && <div className="group-label">{label?.text}</div>}
+      <div className="group-label">{label?.text}</div>
 
       <Toggle isGroupOpen={isGroupOpen} setIsGroupOpen={setIsGroupOpen} />
     </div>
@@ -42,11 +42,13 @@ const Group = ({ ...item }) => {
       layout={layout}
       isGroupOpen={isGroupOpen}
     >
-      <Header
-        label={label}
-        isGroupOpen={isGroupOpen}
-        setIsGroupOpen={setIsGroupOpen}
-      />
+      {label?.visible && (
+        <Header
+          label={label}
+          isGroupOpen={isGroupOpen}
+          setIsGroupOpen={setIsGroupOpen}
+        />
+      )}
 
       <div className="group-items">
         {Object.entries(items).map(([key, value]) => {
