@@ -12,7 +12,7 @@ const List = ({ items, ...list }) => {
   const currObjectPathId = list.objectPathId || id;
 
   return (
-    <ListContainer isListOpen={isListOpen} className="list-container">
+    <ListContainer className="list-container" isListOpen={isListOpen}>
       <div className="list-controls">
         {label?.visible && (
           <button

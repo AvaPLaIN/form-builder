@@ -26,15 +26,22 @@ const GroupContainer = styled.div`
   margin: 1rem 0;
   position: relative;
 
-  .group-label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 0.5rem;
+  .group-header {
+    display: flex;
+    align-items: center;
+
+    .group-label {
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 0.5rem;
+    }
   }
 
   .group-items {
     padding-left: 2rem;
+    overflow: hidden;
     ${handleLayout};
+    max-height: ${({ isGroupOpen }) => (isGroupOpen ? "100%" : "0")};
   }
 
   &::before {
