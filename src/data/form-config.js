@@ -1,5 +1,23 @@
 const formConfig = {
   form: {
+    test: {
+      id: "test",
+      control: "linkInput",
+      type: "link",
+      value: "",
+      placeholder: "link...",
+      label: {
+        text: "Test",
+        visible: true,
+      },
+      rules: {
+        required: {
+          value: true,
+          message: "Test is required",
+        },
+      },
+      uuid: "test",
+    },
     address: {
       id: "address",
       control: "group",
