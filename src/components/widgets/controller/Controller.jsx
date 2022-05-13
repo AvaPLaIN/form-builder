@@ -1,15 +1,15 @@
 import { memo } from "react";
 import Group from "../group";
 import Input from "../input";
-import LinkInput from "../link-input/LinkInput";
 import List from "../list";
 import Select from "../select";
+import UrlInput from "../url-input";
 
 const Controller = ({ item, ...props }) => {
   const controlMap = {
     group: Group,
     input: Input,
-    linkInput: LinkInput,
+    urlInput: UrlInput,
     list: List,
     select: Select,
   };

@@ -2,10 +2,10 @@ const formConfig = {
   form: {
     test: {
       id: "test",
-      control: "linkInput",
-      type: "link",
+      control: "urlInput",
+      type: "url",
       value: "",
-      placeholder: "link...",
+      placeholder: "url...",
       label: {
         text: "Test",
         visible: true,

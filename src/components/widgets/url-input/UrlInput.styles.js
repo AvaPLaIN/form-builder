@@ -22,7 +22,7 @@ const handleLayout = ({ layout }) => {
   }
 };
 
-const LinkInputContainer = styled.div`
+const UrlInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -40,11 +40,11 @@ const LinkInputContainer = styled.div`
     display: flex;
     align-items: center;
 
-    .input {
+    .url-input {
       width: 100%;
     }
 
-    .input-control-icons {
+    .url-input-control-icons {
       position: absolute;
       right: 0;
       display: flex;
@@ -72,4 +72,4 @@ const LinkInputContainer = styled.div`
   }
 `;
 
-export default LinkInputContainer;
+export default UrlInputContainer;

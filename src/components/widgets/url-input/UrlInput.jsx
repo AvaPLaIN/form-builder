@@ -4,13 +4,13 @@ import { useFormContext } from "react-hook-form";
 import { BsFillCloudFog2Fill } from "react-icons/bs";
 import { FaCopy } from "react-icons/fa";
 import FormStateContext from "../../../context/formState";
-import LinkInputContainer from "./LinkInput.styles";
+import LinkInputContainer from "./UrlInput.styles";
 
 const ControllIcons = ({ value }) => {
   const handleCopyValue = () => navigator.clipboard.writeText(value);
 
   return (
-    <div className="input-control-icons">
+    <div className="url-input-control-icons">
       <button
         className="copy-icon"
         title="copy"
@@ -28,7 +28,7 @@ const ControllIcons = ({ value }) => {
   );
 };
 
-const Input = ({ ...item }) => {
+const UrlInput = ({ ...item }) => {
   const {
     rules,
     value,
@@ -76,18 +76,18 @@ const Input = ({ ...item }) => {
 
   return (
     <LinkInputContainer
-      className="control-container input-container"
+      className="control-container url-input-container"
       data-testid="input"
       layout={layout}
     >
       {label?.visible && (
-        <label className="label input-label" htmlFor={currSavePathId}>
+        <label className="label url-input-label" htmlFor={currSavePathId}>
           {label?.text}
         </label>
       )}
       <div className="input-wrapper">
         <input
-          className="control input"
+          className="control url-input"
           type={type}
           onChange={handleOnChange}
           {...registerProps}
@@ -96,9 +96,11 @@ const Input = ({ ...item }) => {
         />
         <ControllIcons value={value} />
       </div>
-      {errorMessage && <div className="error input-error">{errorMessage}</div>}
+      {errorMessage && (
+        <div className="error url-input-error">{errorMessage}</div>
+      )}
     </LinkInputContainer>
   );
 };
 
-export default memo(Input);
+export default memo(UrlInput);
