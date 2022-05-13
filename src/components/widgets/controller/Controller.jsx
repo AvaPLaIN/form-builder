@@ -2,6 +2,7 @@ import { memo } from "react";
 import Group from "../group";
 import Input from "../input";
 import List from "../list";
+import PasswordInput from "../password-input";
 import Select from "../select";
 import UrlInput from "../url-input";
 
@@ -12,6 +13,8 @@ const Controller = ({ item, ...props }) => {
     urlInput: UrlInput,
     list: List,
     select: Select,
+    passwordInput: PasswordInput,
+    // TODO - add Error Fallback Control
   };
 
   const Component = controlMap[item.control];

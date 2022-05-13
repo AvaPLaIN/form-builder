@@ -1,16 +1,16 @@
 import get from "lodash/get";
-import { memo, useContext, useEffect } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { BsFillCloudFog2Fill } from "react-icons/bs";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FaCopy } from "react-icons/fa";
 import FormStateContext from "../../../context/formState";
-import UrlInputContainer from "./UrlInput.styles";
+import PasswordInputContainer from "./PasswordInput.styles";
 
-const ControllIcons = ({ value }) => {
+const ControllIcons = ({ value, showPassword, toggleShowPassword }) => {
   const handleCopyValue = () => navigator.clipboard.writeText(value);
 
   return (
-    <div className="url-input-control-icons">
+    <div className="password-input-control-icons">
       <button
         className="copy-icon"
         title="copy"
@@ -19,23 +19,25 @@ const ControllIcons = ({ value }) => {
       >
         <FaCopy />
       </button>
-      <button className="visit-icon" title="visit" type="button">
-        <a href={value} target="_blank" rel="noreferrer">
-          <BsFillCloudFog2Fill />
-        </a>
+      <button
+        className="toggle-type-icon"
+        title={showPassword ? "hide password" : "show password"}
+        type="button"
+        onClick={toggleShowPassword}
+      >
+        {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
       </button>
     </div>
   );
 };
 
-const UrlInput = ({ ...item }) => {
+const PasswordInput = ({ ...item }) => {
   const {
     rules,
     value,
     savePathId,
     objectPathId,
     id,
-    type,
     layout,
     placeholder,
     label,
@@ -49,6 +51,8 @@ const UrlInput = ({ ...item }) => {
     unregister,
     formState: { errors },
   } = useFormContext();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   //* get currPathIds for control
   const currSavePathId = savePathId || id;
@@ -74,33 +78,39 @@ const UrlInput = ({ ...item }) => {
     onChange(event);
   };
 
+  const handleToggleShowPassword = () => setShowPassword(!showPassword);
+
   return (
-    <UrlInputContainer
-      className="control-container url-input-container"
+    <PasswordInputContainer
+      className="control-container password-input-container"
       data-testid="input"
       layout={layout}
     >
       {label?.visible && (
-        <label className="label url-input-label" htmlFor={currSavePathId}>
+        <label className="label password-input-label" htmlFor={currSavePathId}>
           {label?.text}
         </label>
       )}
       <div className="input-wrapper">
         <input
-          className="control url-input"
-          type={type}
+          className="control password-input"
+          type={showPassword ? "text" : "password"}
           onChange={handleOnChange}
           {...registerProps}
           id={currSavePathId}
           placeholder={placeholder}
         />
-        <ControllIcons value={value} />
+        <ControllIcons
+          value={value}
+          showPassword={showPassword}
+          toggleShowPassword={handleToggleShowPassword}
+        />
       </div>
       {errorMessage && (
-        <div className="error url-input-error">{errorMessage}</div>
+        <div className="error password-input-error">{errorMessage}</div>
       )}
-    </UrlInputContainer>
+    </PasswordInputContainer>
   );
 };
 
-export default memo(UrlInput);
+export default memo(PasswordInput);

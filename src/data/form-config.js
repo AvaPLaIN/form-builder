@@ -18,6 +18,24 @@ const formConfig = {
       },
       uuid: "test",
     },
+    testpw: {
+      id: "testpw",
+      control: "passwordInput",
+      type: "password",
+      value: "",
+      placeholder: "password...",
+      label: {
+        text: "Password",
+        visible: true,
+      },
+      rules: {
+        required: {
+          value: true,
+          message: "Password is required",
+        },
+      },
+      uuid: "password",
+    },
     address: {
       id: "address",
       control: "group",
