@@ -1,5 +1,29 @@
 import styled, { css } from "styled-components";
 
+// * Dynamic Layout for Group Sub Controls
+const controlGridLayout = css`
+  grid-column-start: ${({ layout }) => layout.columnStart};
+  grid-column-end: ${({ layout }) => layout.columnEnd};
+  grid-row-start: ${({ layout }) => layout.rowStart};
+  grid-row-end: ${({ layout }) => layout.rowEnd};
+`;
+
+const controlFlexLayout = css`
+  flex: 1;
+`;
+
+export const handleGroupControlLayout = (layout) => {
+  switch (layout?.display) {
+    case "grid":
+      return controlGridLayout;
+    case "flex":
+      return controlFlexLayout;
+    default:
+      return null;
+  }
+};
+
+// * Dynamic Layout for Group
 const gridLayout = css`
   display: grid;
   grid-template-columns: repeat(${({ layout }) => layout.columns}, 1fr);

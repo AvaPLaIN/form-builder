@@ -15,6 +15,5 @@ run project: `npm run start`.
 ## TODOS
 
 - remove updateControl handler for value -> should only use react hook form register
-- add textarea control
 - refactor input styles functions for dynamic layout (use 1 util folder for dynamic layout)
 - add multiselect control
