@@ -1,19 +1,24 @@
 import styled from "styled-components";
+import { handleGroupControlLayout } from "../group/Group.styles";
 
 const SelectContainer = styled.div`
   display: flex;
-  align-items: center;
-  margin-left: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   position: relative;
+  ${({ layout }) => handleGroupControlLayout(layout)}
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: -33px;
-    width: 30px;
-    height: 1px;
-    background-color: black;
+  .select-label {
+    white-space: nowrap;
+  }
+
+  .select {
+    width: 100%;
+  }
+
+  .select-error {
+    white-space: nowrap;
   }
 `;
 

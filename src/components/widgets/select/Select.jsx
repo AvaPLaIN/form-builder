@@ -6,7 +6,18 @@ import SelectContainer from "./Select.styles";
 
 const Select = ({ ...item }) => {
   //* destructuring props
-  const { rules, value, savePathId, objectPathId, id, type, options } = item;
+  const {
+    rules,
+    value,
+    savePathId,
+    objectPathId,
+    id,
+    type,
+    options,
+    layout,
+    label,
+    placeholder,
+  } = item;
 
   const { handleUpdateControl } = useContext(FormStateContext);
 
@@ -42,16 +53,22 @@ const Select = ({ ...item }) => {
   };
 
   return (
-    <SelectContainer className="control-container select-container">
-      <label className="label select-label" htmlFor={currSavePathId}>
-        {item.label}
-      </label>
+    <SelectContainer
+      className="control-container select-container"
+      layout={layout}
+    >
+      {label?.visible && (
+        <label className="label select-label" htmlFor={currSavePathId}>
+          {label?.text}
+        </label>
+      )}
       <select
         className="control select"
         type={type}
         onChange={handleOnChange}
         {...registerProps}
         id={currSavePathId}
+        placeholder={placeholder}
       >
         {options?.map((option) => (
           <option key={option.value} value={option.value}>
