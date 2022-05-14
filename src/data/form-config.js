@@ -18,6 +18,24 @@ const formConfig = {
       },
       uuid: "test",
     },
+    textarea: {
+      id: "textarea",
+      control: "textarea",
+      type: "text",
+      value: "",
+      placeholder: "textarea...",
+      label: {
+        text: "Textarea",
+        visible: true,
+      },
+      rules: {
+        required: {
+          value: true,
+          message: "Textarea is required",
+        },
+      },
+      uuid: "textarea",
+    },
     testpw: {
       id: "testpw",
       control: "passwordInput",
