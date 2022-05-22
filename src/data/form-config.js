@@ -18,6 +18,28 @@ const formConfig = {
       },
       uuid: "test",
     },
+    select: {
+      id: "select",
+      control: "select",
+      options: [
+        {
+          value: "test",
+          label: "test",
+        },
+      ],
+      value: "",
+      label: {
+        text: "Test",
+        visible: true,
+      },
+      rules: {
+        required: {
+          value: true,
+          message: "Select is required",
+        },
+      },
+      uuid: "select",
+    },
     textarea: {
       id: "textarea",
       control: "textarea",

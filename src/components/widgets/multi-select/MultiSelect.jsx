@@ -1,12 +1,18 @@
 import { memo } from "react";
-import SelectContainer from "./Select.styles";
+import MultiSelectContainer from "./MultiSelect.styles";
 
-const Select = ({ errorMessage, id, registerProps, onChange, ...item }) => {
+const MultiSelect = ({
+  errorMessage,
+  id,
+  registerProps,
+  onChange,
+  ...item
+}) => {
   //* destructuring props
   const { layout, label, type, placeholder, options } = item;
 
   return (
-    <SelectContainer
+    <MultiSelectContainer
       className="control-container select-container"
       layout={layout}
     >
@@ -30,8 +36,8 @@ const Select = ({ errorMessage, id, registerProps, onChange, ...item }) => {
         ))}
       </select>
       {errorMessage && <div className="error select-error">{errorMessage}</div>}
-    </SelectContainer>
+    </MultiSelectContainer>
   );
 };
 
-export default memo(Select);
+export default memo(MultiSelect);

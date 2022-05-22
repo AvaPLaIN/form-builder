@@ -1,9 +1,6 @@
-import get from "lodash/get";
-import { memo, useContext, useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { memo, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FaCopy } from "react-icons/fa";
-import FormStateContext from "../../../context/formState";
 import PasswordInputContainer from "./PasswordInput.styles";
 
 const ControllIcons = ({ value, showPassword, toggleShowPassword }) => {
@@ -31,52 +28,17 @@ const ControllIcons = ({ value, showPassword, toggleShowPassword }) => {
   );
 };
 
-const PasswordInput = ({ ...item }) => {
-  const {
-    rules,
-    value,
-    savePathId,
-    objectPathId,
-    id,
-    layout,
-    placeholder,
-    label,
-  } = item;
-
-  const { handleUpdateControl } = useContext(FormStateContext);
-
-  //* get the form context
-  const {
-    register,
-    unregister,
-    formState: { errors },
-  } = useFormContext();
+const PasswordInput = ({
+  errorMessage,
+  id,
+  registerProps,
+  onChange,
+  ...item
+}) => {
+  //* destructuring props
+  const { layout, label, placeholder, value } = item;
 
   const [showPassword, setShowPassword] = useState(false);
-
-  //* get currPathIds for control
-  const currSavePathId = savePathId || id;
-  const currObjectPathId = objectPathId || id;
-
-  //* register the control
-  const { onChange, ...registerProps } = register(currSavePathId, {
-    value: value || "",
-    ...rules,
-  });
-
-  //* get the error message for control
-  const errorMessage = get(errors, currSavePathId)?.message;
-
-  //* unregister control when unmounting
-  useEffect(() => {
-    return () => unregister(currSavePathId);
-  }, [currSavePathId, unregister]);
-
-  //* update the control value
-  const handleOnChange = (event) => {
-    handleUpdateControl(currObjectPathId, event.target.value);
-    onChange(event);
-  };
 
   const handleToggleShowPassword = () => setShowPassword(!showPassword);
 
@@ -87,7 +49,7 @@ const PasswordInput = ({ ...item }) => {
       layout={layout}
     >
       {label?.visible && (
-        <label className="label password-input-label" htmlFor={currSavePathId}>
+        <label className="label password-input-label" htmlFor={id}>
           {label?.text}
         </label>
       )}
@@ -95,9 +57,9 @@ const PasswordInput = ({ ...item }) => {
         <input
           className="control password-input"
           type={showPassword ? "text" : "password"}
-          onChange={handleOnChange}
+          onChange={onChange}
           {...registerProps}
-          id={currSavePathId}
+          id={id}
           placeholder={placeholder}
         />
         <ControllIcons
