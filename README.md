@@ -17,3 +17,5 @@ run project: `npm run start`.
 - remove updateControl handler for value -> should only use react hook form register (maybe not possible - list control)
 - add multiselect control
 - adjust unit tests for control wrapper
+- fix storybook
+- update packages

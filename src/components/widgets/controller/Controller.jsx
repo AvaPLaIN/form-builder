@@ -11,14 +11,19 @@ import UrlInput from "../url-input";
 
 const Controller = ({ item, ...props }) => {
   const controlMap = {
-    group: Group,
-    input: Input,
-    urlInput: UrlInput,
+    //* Layout Controls
     list: List,
+    group: Group,
+
+    //* Input Controls
+    input: Input,
+    passwordInput: PasswordInput,
+    urlInput: UrlInput,
+    textarea: Textarea,
+
+    //* Select Controls
     select: Select,
     multiSelect: MultiSelect,
-    passwordInput: PasswordInput,
-    textarea: Textarea,
     // TODO - add Error Fallback Control
   };
 
