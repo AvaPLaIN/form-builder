@@ -1,5 +1,21 @@
 const formConfig = {
   form: {
+    testCheckbox: {
+      id: "testCheckbox",
+      control: "checkbox",
+      value: false,
+      label: {
+        text: "Checkbox",
+        visible: true,
+      },
+      rules: {
+        required: {
+          value: true,
+          message: "Checkbox is required",
+        },
+      },
+      uuid: "checkbox",
+    },
     test: {
       id: "test",
       control: "urlInput",

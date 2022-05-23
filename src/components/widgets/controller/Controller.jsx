@@ -1,4 +1,5 @@
 import { memo } from "react";
+import Checkbox from "../checkbox";
 import ControlWrapper from "../control-wrapper/ControlWrapper";
 import Group from "../group";
 import Input from "../input";
@@ -20,6 +21,7 @@ const Controller = ({ item, ...props }) => {
     passwordInput: PasswordInput,
     urlInput: UrlInput,
     textarea: Textarea,
+    checkbox: Checkbox,
 
     //* Select Controls
     select: Select,

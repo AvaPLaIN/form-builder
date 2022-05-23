@@ -19,3 +19,4 @@ run project: `npm run start`.
 - adjust unit tests for control wrapper
 - fix storybook
 - update packages
+- checkbox control
