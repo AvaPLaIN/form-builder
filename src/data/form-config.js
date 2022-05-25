@@ -39,12 +39,6 @@ const formConfig = {
         text: "Checkbox",
         visible: true,
       },
-      rules: {
-        required: {
-          value: true,
-          message: "Checkbox is required",
-        },
-      },
       uuid: "checkbox",
     },
     test: {
