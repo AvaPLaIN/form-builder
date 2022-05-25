@@ -1,5 +1,36 @@
 const formConfig = {
   form: {
+    multiSelect: {
+      id: "multiSelect",
+      control: "multiSelect",
+      options: [
+        {
+          value: "test1",
+          label: "test1",
+        },
+        {
+          value: "test2",
+          label: "test2",
+        },
+        {
+          value: "test3",
+          label: "test3",
+        },
+      ],
+      value: ["test2", "test3"],
+      placeholder: "Placeholder",
+      label: {
+        text: "Multi Select",
+        visible: true,
+      },
+      rules: {
+        required: {
+          value: true,
+          message: "multiSelect is required",
+        },
+      },
+      uuid: "multiSelect",
+    },
     testCheckbox: {
       id: "testCheckbox",
       control: "checkbox",

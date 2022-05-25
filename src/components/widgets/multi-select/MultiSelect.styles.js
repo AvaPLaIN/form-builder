@@ -9,15 +9,15 @@ const MultiSelectContainer = styled.div`
   position: relative;
   ${({ layout }) => handleGroupControlLayout(layout)}
 
-  .select-label {
+  .multi-select-label {
     white-space: nowrap;
   }
 
-  .select {
+  .multi-select {
     width: 100%;
   }
 
-  .select-error {
+  .multi-select-error {
     white-space: nowrap;
   }
 `;
