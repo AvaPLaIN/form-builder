@@ -3,7 +3,9 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import Autocomplete from "@mui/material/Autocomplete";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
-import { memo, useEffect, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import FormStateContext from "../../../context/formState";
 import MultiSelectContainer from "./MultiSelect.styles";
 import formatValueToOptionsFormat from "./utils/formatValueToOptionsFormat";
 import getValuesFromSelectedOptions from "./utils/getValuesFromSelectedOptions";
@@ -11,16 +13,16 @@ import getValuesFromSelectedOptions from "./utils/getValuesFromSelectedOptions";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const MultiSelect = ({
-  errorMessage,
-  id,
-  registerProps,
-  onChange,
-  ...item
-}) => {
+// TODO - implement custom logic for multi-select
+//* Error Message, ...
+const MultiSelect = ({ errorMessage, id, registerProps, ...item }) => {
   const { layout, label, options, placeholder, value } = item;
 
   const [selectedValues, setSelectedValues] = useState([]);
+
+  //* handle update control form state manually - specific control
+  const { handleUpdateControl } = useContext(FormStateContext);
+  const { setValue } = useFormContext();
 
   useEffect(() => {
     setSelectedValues(formatValueToOptionsFormat(value));
@@ -28,9 +30,10 @@ const MultiSelect = ({
 
   const handleOnChange = (_, values) => {
     const formattedValues = getValuesFromSelectedOptions(values);
-    const modifiedEvent = { target: { value: formattedValues } };
+
+    setValue(id, formattedValues);
+    handleUpdateControl(id, formattedValues);
     setSelectedValues(values);
-    onChange(modifiedEvent);
   };
 
   return (
