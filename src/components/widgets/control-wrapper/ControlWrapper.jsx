@@ -22,7 +22,7 @@ const ControlWrapper = ({ Control, ...item }) => {
 
   //* register the control
   const { onChange, ...registerProps } = register(currSavePathId, {
-    value: value || "",
+    value: value,
     ...rules,
   });
 
