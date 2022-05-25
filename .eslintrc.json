@@ -7,7 +7,7 @@
   "extends": [
     "react-app",
     "react-app/jest",
-    "airbnb",
+    // "airbnb", //! Error: Plugin "import" was conflicted between ".eslintrc.json » eslint-config-airbnb
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
